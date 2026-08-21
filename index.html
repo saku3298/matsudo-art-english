@@ -1,0 +1,13 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>英語やり直しトレーニング</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><header><div class="wrap"><p>松戸高校芸術科 合格プロジェクト</p><h1>英語やり直しトレーニング</h1><p>まず1問ずつ。できたら次へ。</p></div></header>
+<main class="wrap">
+<section class="card"><h2>① 1問ずつ練習</h2><p>最初はここから。1テーマ4問を繰り返し、3問連続正解でクリアです。</p><div id="lessons"></div></section>
+<section class="card"><h2>② 10問ミニテスト</h2><p>基礎ができたら短いテストで確認します。</p><a class="btn" href="mini.html">10問に挑戦</a></section>
+<section class="card"><h2>③ 総合テスト</h2><p>最後に本番を意識した総合確認をします。</p><a class="btn sub" href="full.html">総合テストについて</a></section>
+</main><script src="data/lessons.js"></script><script>
+const box=document.getElementById('lessons');
+LESSONS.forEach((x,i)=>{const done=localStorage.getItem('lesson-done-'+x.id)==='1';
+box.insertAdjacentHTML('beforeend',`<a class="lesson ${done?'done':''}" href="lesson.html?id=${x.id}">
+<span class="num">${i+1}</span><span><b>${x.title}</b><small>${done?'クリア済み ✓':'練習する'}</small></span></a>`);});
+</script></body></html>

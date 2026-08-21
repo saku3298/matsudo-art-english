@@ -1,0 +1,7 @@
+const id=new URLSearchParams(location.search).get('id');const L=LESSONS.find(x=>x.id===id)||LESSONS[0];
+let streak=0,idx=0,locked=false;const $=x=>document.getElementById(x);
+$('title').textContent=L.title;$('rule').innerHTML=`<div class="rule"><b>ポイント</b><br>${L.rule}<p class="example">${L.example}</p></div>`;
+function norm(s){return String(s).toLowerCase().replace(/[’']/g,"'").replace(/[.!?]/g,"").replace(/\s+/g," ").trim()}
+function show(){locked=false;const q=L.questions[idx%L.questions.length];$('prompt').textContent=q.p;$('ans').value='';$('feedback').innerHTML='';$('next').classList.add('hide');$('check').disabled=false;$('ans').focus();$('bar').style.width=(streak/3*100)+'%';$('streak').textContent=`連続正解 ${streak} / 3`}
+$('check').onclick=()=>{if(locked)return;locked=true;const q=L.questions[idx%L.questions.length],ok=norm($('ans').value)===norm(q.a);if(ok){streak++;$('feedback').innerHTML=`<div class="feedback ok">○ 正解！<br>${q.e}</div>`}else{streak=0;$('feedback').innerHTML=`<div class="feedback ng">× もう一度覚えよう<br>正解：${q.a}<br>${q.e}</div>`}$('bar').style.width=(streak/3*100)+'%';$('streak').textContent=`連続正解 ${streak} / 3`;if(streak>=3){localStorage.setItem('lesson-done-'+L.id,'1');$('feedback').innerHTML+=`<div class="feedback ok">このテーマはクリアです！</div>`}$('next').classList.remove('hide');$('check').disabled=true};
+$('next').onclick=()=>{idx++;show()};$('ans').addEventListener('keydown',e=>{if(e.key==='Enter'&&!locked)$('check').click()});show();
