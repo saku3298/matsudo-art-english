@@ -139,6 +139,29 @@
   text-underline-offset: 4px;
 }
 
+
+.q9PassageBox{margin-top:14px;padding:16px;background:#f7f9fc;border-radius:14px;line-height:1.75}
+.q9PassageBox p{margin:0 0 16px}
+.q9Notes{font-size:13px;line-height:1.8;margin-top:8px}
+.q9AllQuestions{display:grid;gap:16px;margin-top:20px}
+.q9OneQuestion{background:#fff;border:1px solid #dce3ec;border-radius:14px;padding:14px}
+.q9OneQuestion h3{margin:0 0 10px;font-size:18px}
+.q9Reorder{display:grid;gap:8px;margin-top:10px}
+.q9Reorder button.selected{outline:2px solid #2d61db;background:#eef3ff}
+.q9Bilingual{display:grid;gap:12px;margin-top:12px}
+.q9Line{background:#f7f9fc;border:1px solid #dce3ec;border-radius:12px;padding:12px}
+.q9English{font-weight:600;line-height:1.65}
+.q9Japanese{margin-top:6px;line-height:1.65}
+
+
+.q10Notice{background:#eef3ff;border:1px solid #cfdcff;border-radius:14px;padding:14px;line-height:1.65;margin-bottom:16px}
+.q10Japanese{font-weight:700;line-height:1.65;margin-bottom:12px}
+.q10Sentence{font-size:17px;line-height:1.8;background:#f7f9fc;border-radius:12px;padding:14px;margin-bottom:14px}
+.q10Options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q10Order{margin:12px 0;padding:12px;background:#f7f9fc;border-radius:12px;min-height:48px}
+.q10Summary{display:grid;gap:12px}
+@media(max-width:420px){.q10Options{grid-template-columns:1fr 1fr}.q10Sentence{font-size:16px}}
+
 </style>
 </head><body><main class="wrap">
 <div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜8｜スマホ学習</div></div>
@@ -152,6 +175,8 @@
 <button onclick="start(6)">大問6　日記文・語句選択（3問）</button>
 <button onclick="start(7)">大問7　英文の書きかえ（5問）</button>
 <button onclick="start(8)">大問8　長文会話・ポスター（4問）</button>
+<button onclick="start(9)">大問9　長文読解・ホームステイ（4問）</button>
+<button onclick="start(10)">大問10　選択問題・語順整序（Ⅰ・Ⅱ 各5問）</button>
 <p class="muted">問題と回答を同じ画面に表示します。大問1・2は音声、大問3・4は英単語、大問5は文法・語形、大問6は日記文の語句選択です。</p>
 </section>
 <section id="quiz" class="card hide">
@@ -270,6 +295,30 @@ const sets={
   ],
   answer:["イ","オ"],
   explanation:"メアリーは「ひらがなとカタカナは読めるが漢字は読めない」と話しています。また健太は台本を書きたいと言っており、スタッフとして参加する内容です。"}
+],
+9:[
+ {kind:"reading9",type:"word",label:"(1)",answer:"first",
+  question:"本文中の下線部①が、「初日に」という意味になるように、（　）に入る最も適当な英単語1語を書きなさい。",
+  explanation:"「初日」は the first day と表します。したがって first が入ります。"},
+ {kind:"reading9",type:"reorder",label:"(2)",
+  question:"本文中の下線部②が意味の通る英文になるように、（　）内のア〜オを正しい語順に並べかえ、その順番を符号で書きなさい。",
+  choices:[["ア","the Brown family’s breakfast"],["イ","was"],["ウ","didn’t"],["エ","good"],["オ","think"]],
+  answer:["ウ","オ","ア","イ","エ"],
+  display:"So, I didn’t think the Brown family’s breakfast was good.",
+  explanation:"「私はブラウンさん一家の朝食はよくないと思いました」という意味なので、didn’t think → the Brown family’s breakfast → was good の順です。"},
+ {kind:"reading9",type:"twoWords",label:"(3)",answers:["wants","cook"],
+  question:"次の問いと答えの英文が本文の内容に合うように、（　）内に入る最も適当な英単語を1語ずつ書きなさい。",
+  qa:"[問い] What does Riku want to be in the future?<br>[答え] He (　) to be a (　).",
+  explanation:"最終段落の「I want to be a cook in the future.」が根拠です。主語が He なので want は wants になります。"},
+ {kind:"reading9",type:"choice",label:"(4)",answer:"ア",
+  question:"本文の内容に合うものを、次のア〜エのうちから一つ選び、その符号を書きなさい。",
+  choices:[
+   ["ア","陸は、カナダでのホームステイで、世界にはさまざまな朝食の食べ方があることを知った。"],
+   ["イ","ブラウンさん一家は、ふつう家族みんなで朝食を食べる。"],
+   ["ウ","陸は、カナダでも台湾でも、人々が家で朝食を食べないことにおどろいた。"],
+   ["エ","陸は今、家族のためにときどき朝食を作っている。"]
+  ],
+  explanation:"本文では、カナダと台湾の朝食の習慣を知ったことをきっかけに、陸が世界の食文化に興味を持ったと書かれています。したがってアが正解です。"}
 ]};
 let section=1,idx=0,score=0,wrong=[],selected=null;
 const $=x=>document.getElementById(x);
@@ -277,7 +326,222 @@ function say(t){if(!speechSynthesis){alert("このブラウザでは音声を利
 function start(n,list=null){
  section=n;idx=0;score=0;wrong=[];selected=null;sets._run=list||sets[n];
  $("menu").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");
- if(n===8 && !list){renderQ8All();}else{render();}
+ if(n===8 && !list){renderQ8All();}else if(n===9 && !list){renderQ9All();}else if(n===10 && !list){renderQ10Start();}else{render();}
+}
+
+
+
+const q10Data={
+ I:[
+  {jp:"私は忙しいので、あなたを手伝うことができません。",pre:"I cannot help",post:".",opts:[["ア","because"],["イ","busy"],["ウ","I’m"],["エ","you"]],ans:["エ","ア","ウ","イ"],en:"I cannot help you because I’m busy.",ja:"私は忙しいので、あなたを手伝うことができません。"},
+  {jp:"私たちの市には、病院がたくさんありますか。",pre:"",post:"in our city?",opts:[["ア","hospitals"],["イ","many"],["ウ","are"],["エ","there"]],ans:["ウ","エ","イ","ア"],en:"Are there many hospitals in our city?",ja:"私たちの市には、病院がたくさんありますか。"},
+  {jp:"その公園に大きな木はありません。",pre:"",post:"big tree in the park.",opts:[["ア","there"],["イ","not"],["ウ","a"],["エ","is"]],ans:["ア","エ","イ","ウ"],en:"There is not a big tree in the park.",ja:"その公園に大きな木はありません。"},
+  {jp:"もし明日雨なら、山へ行くことはできません。",pre:"",post:"tomorrow, we can’t go to the mountains.",opts:[["ア","rainy"],["イ","if"],["ウ","it"],["エ","is"]],ans:["イ","ウ","エ","ア"],en:"If it is rainy tomorrow, we can’t go to the mountains.",ja:"もし明日雨なら、山へ行くことはできません。"},
+  {jp:"私は5歳のとき、東京に住んでいました。",pre:"",post:", I lived in Tokyo.",opts:[["ア","when"],["イ","I"],["ウ","five"],["エ","was"]],ans:["ア","イ","エ","ウ"],en:"When I was five, I lived in Tokyo.",ja:"私は5歳のとき、東京に住んでいました。"}
+ ],
+ II:[
+  {jp:"彼女は、ピアノを弾くことが好きです。",pre:"She",post:".",opts:[["ア","to"],["イ","play"],["ウ","the piano"],["エ","likes"]],ans:["エ","ア","イ","ウ"],en:"She likes to play the piano.",ja:"彼女は、ピアノを弾くことが好きです。"},
+  {jp:"トムは、日本語を勉強するためにここへ来ました。",pre:"Tom",post:"Japanese.",opts:[["ア","study"],["イ","here"],["ウ","came"],["エ","to"]],ans:["ウ","イ","エ","ア"],en:"Tom came here to study Japanese.",ja:"トムは、日本語を勉強するためにここへ来ました。"},
+  {jp:"私は昨日、何もしたくありませんでした。",pre:"I",post:"anything yesterday.",opts:[["ア","didn’t"],["イ","do"],["ウ","to"],["エ","want"]],ans:["ア","エ","ウ","イ"],en:"I didn’t want to do anything yesterday.",ja:"私は昨日、何もしたくありませんでした。"},
+  {jp:"ケンタは、試合に勝つために何をしましたか。",pre:"What",post:"win the game?",opts:[["ア","do"],["イ","did"],["ウ","Kenta"],["エ","to"]],ans:["イ","ウ","ア","エ"],en:"What did Kenta do to win the game?",ja:"ケンタは、試合に勝つために何をしましたか。"},
+  {jp:"あなたは何か読むものを持っていますか。",pre:"Do you",post:"?",opts:[["ア","anything"],["イ","to"],["ウ","have"],["エ","read"]],ans:["ウ","ア","イ","エ"],en:"Do you have anything to read?",ja:"あなたは何か読むものを持っていますか。"}
+ ]
+};
+let q10Part="I",q10Index=0,q10Order=[],q10Scores={I:0,II:0},q10Wrong=[];
+
+function renderQ10Start(){
+ section=10;
+ $("title").textContent="大問10 選択問題・語順整序";
+ $("count").textContent="Ⅰ・Ⅱ 両方に挑戦";
+ $("bar").style.width="0%"; $("audio").innerHTML=""; $("choices").innerHTML="";
+ $("feedback").className="feedback hide"; $("check").classList.add("hide"); $("next").classList.add("hide");
+ $("prompt").innerHTML=`
+  <div class="q10Notice"><b>本番では【Ⅰ】【Ⅱ】のどちらか一方を選ぶ問題です。</b><br>この学習サイトでは、練習のため両方に挑戦します。</div>
+  <div>日本文の意味を表す英文になるように、（　）内のア〜エを正しい語順に並べます。文頭に来る語も、問題と同じく小文字で表示しています。</div>
+  <button type="button" class="btn" id="q10Begin" style="margin-top:18px">【Ⅰ】から始める</button>`;
+ $("q10Begin").onclick=()=>{q10Part="I";q10Index=0;q10Scores={I:0,II:0};q10Wrong=[];renderQ10Question()};
+}
+
+function renderQ10Question(){
+ const q=q10Data[q10Part][q10Index]; q10Order=[];
+ $("title").textContent=`大問10 【${q10Part}】`;
+ $("count").textContent=`${q10Index+1} / 5問`;
+ $("bar").style.width=`${q10Index*20}%`; $("audio").innerHTML="";
+ $("feedback").className="feedback hide"; $("choices").innerHTML="";
+ $("check").classList.add("hide"); $("next").classList.add("hide");
+ $("prompt").innerHTML=`
+  <div class="q10Japanese">(${q10Index+1})　${q.jp}</div>
+  <div class="q10Sentence">${q.pre} （ ア〜エを並べかえ ） ${q.post}</div>
+  <div class="q10Order"><b>選んだ順：</b> <span id="q10OrderText">未選択</span></div>
+  <div class="q10Options" id="q10Opts">${q.opts.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div>
+  <button type="button" class="btn sub" id="q10Undo" style="margin-top:12px">1つ戻す</button>
+  <button type="button" class="btn" id="q10Grade" style="margin-top:12px" disabled>答え合わせ</button>`;
+ const grade=$("q10Grade");
+ document.querySelectorAll("#q10Opts .q8Choice").forEach(b=>b.onclick=()=>{
+   q10Order.push(b.dataset.k);
+   $("q10OrderText").textContent=q10Order.join(" → ");
+   grade.disabled=q10Order.length!==4;
+ });
+ $("q10Undo").onclick=()=>{
+   q10Order.pop();
+   $("q10OrderText").textContent=q10Order.length?q10Order.join(" → "):"未選択";
+   grade.disabled=q10Order.length!==4;
+ };
+ grade.onclick=gradeQ10;
+}
+
+function gradeQ10(){
+ const q=q10Data[q10Part][q10Index];
+ const ok=q10Order.join("")===q.ans.join("");
+ if(ok) q10Scores[q10Part]++; else q10Wrong.push({part:q10Part,index:q10Index});
+ document.querySelectorAll("#prompt button").forEach(b=>b.disabled=true);
+ $("bar").style.width=`${(q10Index+1)*20}%`;
+ $("feedback").className="feedback";
+ $("feedback").innerHTML=`
+  <b>${ok?"○ 正解":"× 不正解"}</b><br><br>
+  正しい順番：<b>${q.ans.join(" → ")}</b><br>
+  <div class="q8ResultItem"><div class="q8English">${q.en}</div><div class="q8Japanese">${q.ja}</div>
+  <button type="button" class="btn sub" id="q10Listen">▶ 完成した英文を聞く</button></div>
+  <button type="button" class="btn" id="q10Continue">${q10Index<4?"次の問題へ":q10Part==="I"?"【Ⅰ】の結果を見る":"大問10の結果を見る"}</button>`;
+ $("q10Listen").onclick=()=>say(q.en);
+ $("q10Continue").onclick=()=>{
+   if(q10Index<4){q10Index++;renderQ10Question()}
+   else if(q10Part==="I"){renderQ10PartResult()}
+   else{renderQ10Final()}
+ };
+ $("feedback").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function renderQ10PartResult(){
+ $("title").textContent="大問10 【Ⅰ】結果"; $("count").textContent="5問終了"; $("bar").style.width="100%";
+ $("prompt").innerHTML=`<div class="q10Notice"><b>【Ⅰ】 ${q10Scores.I} / 5問 正解</b></div>
+ <button type="button" class="btn" id="q10ToII">【Ⅱ】へ進む</button>`;
+ $("feedback").className="feedback hide"; $("audio").innerHTML="";
+ $("q10ToII").onclick=()=>{q10Part="II";q10Index=0;renderQ10Question()};
+}
+
+function renderQ10Final(){
+ const total=q10Scores.I+q10Scores.II;
+ $("title").textContent="大問10 完了"; $("count").textContent="Ⅰ・Ⅱ 10問終了"; $("bar").style.width="100%";
+ $("feedback").className="feedback hide"; $("audio").innerHTML="";
+ $("prompt").innerHTML=`<div class="q10Summary">
+  <div class="q10Notice"><b>大問10 完了</b><br>【Ⅰ】${q10Scores.I} / 5問<br>【Ⅱ】${q10Scores.II} / 5問<br><b>合計 ${total} / 10問</b></div>
+  ${q10Wrong.length?'<button type="button" class="btn" id="q10Retry">間違えた問題だけもう一度</button>':'<div class="feedback"><b>全問正解です！</b></div>'}
+  <button type="button" class="btn sub" id="q10Menu">大問一覧へ戻る</button></div>`;
+ if(q10Wrong.length) $("q10Retry").onclick=()=>renderQ10RetryStart();
+ $("q10Menu").onclick=()=>location.reload();
+}
+
+function renderQ10RetryStart(){
+ const list=[...q10Wrong]; let ri=0;
+ function show(){
+  const item=list[ri],q=q10Data[item.part][item.index];q10Order=[];
+  $("title").textContent=`大問10 復習 【${item.part}】(${item.index+1})`;
+  $("count").textContent=`${ri+1} / ${list.length}問`;
+  $("prompt").innerHTML=`<div class="q10Japanese">${q.jp}</div><div class="q10Sentence">${q.pre} （ ア〜エを並べかえ ） ${q.post}</div>
+   <div class="q10Order"><b>選んだ順：</b> <span id="q10OrderText">未選択</span></div>
+   <div class="q10Options" id="q10Opts">${q.opts.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div>
+   <button class="btn sub" id="q10Undo">1つ戻す</button><button class="btn" id="q10Grade" disabled>答え合わせ</button>`;
+  $("feedback").className="feedback hide";
+  const grade=$("q10Grade");
+  document.querySelectorAll("#q10Opts .q8Choice").forEach(b=>b.onclick=()=>{q10Order.push(b.dataset.k);$("q10OrderText").textContent=q10Order.join(" → ");grade.disabled=q10Order.length!==4});
+  $("q10Undo").onclick=()=>{q10Order.pop();$("q10OrderText").textContent=q10Order.length?q10Order.join(" → "):"未選択";grade.disabled=q10Order.length!==4};
+  grade.onclick=()=>{
+   const ok=q10Order.join("")===q.ans.join("");
+   $("feedback").className="feedback";$("feedback").innerHTML=`<b>${ok?"○ 正解":"× 不正解"}</b><br>正しい順番：<b>${q.ans.join(" → ")}</b><div class="q8ResultItem"><div class="q8English">${q.en}</div><div class="q8Japanese">${q.ja}</div><button class="btn sub" id="q10Listen">▶ 完成した英文を聞く</button></div><button class="btn" id="q10RetryNext">${ri+1<list.length?"次の復習問題へ":"復習を終了"}</button>`;
+   $("q10Listen").onclick=()=>say(q.en);
+   $("q10RetryNext").onclick=()=>{ri++; if(ri<list.length)show();else renderQ10Final()};
+  };
+ }
+ show();
+}
+
+const q9PassageHtml=()=>`
+<div class="q9PassageBox">
+ <div class="small muted" style="margin-bottom:10px">中学生の陸（Riku）が、昨年カナダ（Canada）にホームステイ（homestay）をしたときのことについて書いた文章です。</div>
+ <p>Last year, I visited Canada and did a homestay there. I stayed for a month with the Brown family, Mr. and Mrs. Brown and Tom. Tom is a junior high school student, too. ①On the (　) day, Mrs. Brown told me about their family rules. One of them was about breakfast. They don’t usually eat breakfast together. They usually eat some fruit and oatmeal alone. Many people in Canada do that. I was surprised to hear that.</p>
+ <p>In my family in Japan, my mother makes breakfast for us every day. I often eat rice, miso soup, and some small dishes with my family. My mother always says, “Breakfast is important.” ②So, I ( ア the Brown family’s breakfast　イ was　ウ didn’t　エ good　オ think ).</p>
+ <p>I was interested in breakfast in other countries. I asked a girl from Taiwan in Tom’s class, “I want to know about breakfast in your country. How do you usually eat breakfast?” She said, “We don’t usually eat breakfast at home. Some families don’t have a kitchen. Many people eat breakfast at some food stores or buy something and eat it at work or at school.” I was surprised again.</p>
+ <p>After I learned that, I was interested in food around the world. Now, I sometimes make dinner for my family. I can make curry and rice, gyoza, pizza, and yakisoba. I want to be a cook in the future.</p>
+ <div class="q9Notes">※ the Brown family＝ブラウンさん一家　rule＝規則　oatmeal＝オートミール　alone＝ひとりで　surprised＝おどろいて　ask＝〜にたずねる　Taiwan＝台湾　at work＝職場で</div>
+</div>`;
+
+function renderQ9All(){
+ section=9; idx=0; score=0; wrong=[]; selected=null; sets._run=sets[9];
+ $("title").textContent="大問9 長文読解・ホームステイ";
+ $("count").textContent="4問まとめて解答";
+ $("bar").style.width="0%";
+ $("audio").innerHTML="";
+ $("feedback").className="feedback hide";
+ $("choices").innerHTML="";
+ $("check").classList.add("hide"); $("next").classList.add("hide");
+ const qs=sets[9];
+ $("prompt").innerHTML=`
+  <div class="small muted">長文を読み、(1)〜(4)をすべて解答してからまとめて答え合わせをします。途中では正解・解説は表示しません。</div>
+  ${q9PassageHtml()}
+  <div class="q9AllQuestions">
+   <div class="q9OneQuestion"><h3>(1)</h3><div>${qs[0].question}</div>
+    <input id="q9w1" class="q8AnswerInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="英単語1語を入力"></div>
+   <div class="q9OneQuestion"><h3>(2)</h3><div>${qs[1].question}</div>
+    <div class="q9Reorder" id="q9order">${qs[1].choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div>
+    <div class="small muted" style="margin-top:8px">選んだ順：<span id="q9orderText">未選択</span></div>
+    <button type="button" class="btn sub" id="q9orderUndo">1つ戻す</button></div>
+   <div class="q9OneQuestion"><h3>(3)</h3><div>${qs[2].question}</div><div class="sentence" style="margin-top:10px">${qs[2].qa}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input id="q9w31" class="q8AnswerInput" type="text" placeholder="1語目"><input id="q9w32" class="q8AnswerInput" type="text" placeholder="2語目"></div></div>
+   <div class="q9OneQuestion"><h3>(4)</h3><div>${qs[3].question}</div>
+    <div class="q8Multi" id="q9choice">${qs[3].choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div></div>
+   <button type="button" class="btn" id="q9AllCheck" disabled>4問まとめて答え合わせ</button>
+  </div>`;
+ window.q9Order=[]; window.q9Choice="";
+ const check=$("q9AllCheck");
+ function valid(){check.disabled=!($("q9w1").value.trim() && window.q9Order.length===5 && $("q9w31").value.trim() && $("q9w32").value.trim() && window.q9Choice)}
+ ["q9w1","q9w31","q9w32"].forEach(id=>$(id).addEventListener("input",valid));
+ document.querySelectorAll("#q9order .q8Choice").forEach(b=>b.onclick=()=>{
+   if(window.q9Order.includes(b.dataset.k)) return;
+   window.q9Order.push(b.dataset.k); b.classList.add("selected"); b.disabled=true;
+   $("q9orderText").textContent=window.q9Order.join(" → "); valid();
+ });
+ $("q9orderUndo").onclick=()=>{
+   const k=window.q9Order.pop();
+   if(k){const b=document.querySelector(`#q9order .q8Choice[data-k="${k}"]`); b.disabled=false;b.classList.remove("selected")}
+   $("q9orderText").textContent=window.q9Order.length?window.q9Order.join(" → "):"未選択"; valid();
+ };
+ document.querySelectorAll("#q9choice .q8Choice").forEach(b=>b.onclick=()=>{
+   document.querySelectorAll("#q9choice .q8Choice").forEach(x=>x.classList.remove("selected"));
+   b.classList.add("selected"); window.q9Choice=b.dataset.k; valid();
+ });
+ check.onclick=gradeQ9All;
+}
+
+function gradeQ9All(){
+ const qs=sets[9], norm=s=>s.trim().normalize("NFKC").toLowerCase();
+ const ok1=norm($("q9w1").value)===norm(qs[0].answer);
+ const ok2=window.q9Order.join("")===qs[1].answer.join("");
+ const ok3=norm($("q9w31").value)===norm(qs[2].answers[0]) && norm($("q9w32").value)===norm(qs[2].answers[1]);
+ const ok4=window.q9Choice===qs[3].answer;
+ const oks=[ok1,ok2,ok3,ok4]; score=oks.filter(Boolean).length;
+ document.querySelectorAll("#prompt button,#prompt input").forEach(x=>x.disabled=true);
+ $("bar").style.width="100%";
+ $("feedback").className="feedback";
+ $("feedback").innerHTML=`
+  <b>大問9　${score} / 4問 正解</b>
+  <div class="q8ResultItem"><b>(1) ${ok1?"○":"×"}</b><br>正解：<b>first</b><br>${qs[0].explanation}</div>
+  <div class="q8ResultItem"><b>(2) ${ok2?"○":"×"}</b><br>正解：<b>ウ → オ → ア → イ → エ</b><br><span class="english">${qs[1].display}</span><br>${qs[1].explanation}</div>
+  <div class="q8ResultItem"><b>(3) ${ok3?"○":"×"}</b><br>正解：<b>wants / cook</b><br>He wants to be a cook.<br>${qs[2].explanation}</div>
+  <div class="q8ResultItem"><b>(4) ${ok4?"○":"×"}</b><br>正解：<b>ア</b><br>${qs[3].explanation}</div>
+  <div class="q8ResultItem"><b>長文を英文・日本語訳で確認</b>
+   <div class="small muted" style="margin-top:5px">段落ごとに、英文のすぐ下へ日本語訳を表示します。▶でその段落だけ聞けます。</div>
+   <div class="q9Bilingual">
+    <div class="q9Line"><div class="q9English">Last year, I visited Canada and did a homestay there. I stayed for a month with the Brown family, Mr. and Mrs. Brown and Tom. Tom is a junior high school student, too. On the first day, Mrs. Brown told me about their family rules. One of them was about breakfast. They don’t usually eat breakfast together. They usually eat some fruit and oatmeal alone. Many people in Canada do that. I was surprised to hear that.</div><div class="q9Japanese">昨年、私はカナダを訪れ、そこでホームステイをしました。私はブラウンさん一家の、ブラウン夫妻とトムと一緒に1か月滞在しました。トムも中学生です。初日に、ブラウンさんのお母さんが家族の決まりについて教えてくれました。その一つは朝食についてでした。彼らはふだん一緒に朝食を食べません。ふつう果物やオートミールを一人で食べます。カナダでは多くの人がそうしています。私はそれを聞いて驚きました。</div><button type="button" class="btn sub q9Play" data-say="Last year, I visited Canada and did a homestay there. I stayed for a month with the Brown family, Mr. and Mrs. Brown and Tom. Tom is a junior high school student, too. On the first day, Mrs. Brown told me about their family rules. One of them was about breakfast. They don't usually eat breakfast together. They usually eat some fruit and oatmeal alone. Many people in Canada do that. I was surprised to hear that.">▶ この段落を聞く</button></div>
+    <div class="q9Line"><div class="q9English">In my family in Japan, my mother makes breakfast for us every day. I often eat rice, miso soup, and some small dishes with my family. My mother always says, “Breakfast is important.” So, I didn’t think the Brown family’s breakfast was good.</div><div class="q9Japanese">日本の私の家では、母が毎日私たちのために朝食を作ります。私は家族と一緒に、ご飯、みそ汁、いくつかのおかずをよく食べます。母はいつも「朝食は大切です」と言います。だから私は、ブラウンさん一家の朝食はよくないと思いました。</div><button type="button" class="btn sub q9Play" data-say="In my family in Japan, my mother makes breakfast for us every day. I often eat rice, miso soup, and some small dishes with my family. My mother always says, Breakfast is important. So, I didn't think the Brown family's breakfast was good.">▶ この段落を聞く</button></div>
+    <div class="q9Line"><div class="q9English">I was interested in breakfast in other countries. I asked a girl from Taiwan in Tom’s class, “I want to know about breakfast in your country. How do you usually eat breakfast?” She said, “We don’t usually eat breakfast at home. Some families don’t have a kitchen. Many people eat breakfast at some food stores or buy something and eat it at work or at school.” I was surprised again.</div><div class="q9Japanese">私はほかの国の朝食に興味を持ちました。トムのクラスの台湾出身の女の子に、「あなたの国の朝食について知りたいです。ふだんどのように朝食を食べますか」とたずねました。彼女は「私たちはふだん家で朝食を食べません。台所がない家庭もあります。多くの人は食料品店などで朝食を食べたり、何かを買って職場や学校で食べたりします」と言いました。私はまた驚きました。</div><button type="button" class="btn sub q9Play" data-say="I was interested in breakfast in other countries. I asked a girl from Taiwan in Tom's class, I want to know about breakfast in your country. How do you usually eat breakfast? She said, We don't usually eat breakfast at home. Some families don't have a kitchen. Many people eat breakfast at some food stores or buy something and eat it at work or at school. I was surprised again.">▶ この段落を聞く</button></div>
+    <div class="q9Line"><div class="q9English">After I learned that, I was interested in food around the world. Now, I sometimes make dinner for my family. I can make curry and rice, gyoza, pizza, and yakisoba. I want to be a cook in the future.</div><div class="q9Japanese">それを知ったあと、私は世界の食べ物に興味を持ちました。今では、ときどき家族のために夕食を作ります。カレーライス、ぎょうざ、ピザ、焼きそばを作ることができます。私は将来、料理人になりたいです。</div><button type="button" class="btn sub q9Play" data-say="After I learned that, I was interested in food around the world. Now, I sometimes make dinner for my family. I can make curry and rice, gyoza, pizza, and yakisoba. I want to be a cook in the future.">▶ この段落を聞く</button></div>
+   </div>
+  </div>
+  <button type="button" class="btn sub" id="q9AllListen">▶ 長文を最初から聞く</button>`;
+ document.querySelectorAll(".q9Play").forEach(b=>b.onclick=()=>say(b.dataset.say));
+ $("q9AllListen").onclick=()=>say("Last year, I visited Canada and did a homestay there. I stayed for a month with the Brown family, Mr. and Mrs. Brown and Tom. Tom is a junior high school student, too. On the first day, Mrs. Brown told me about their family rules. One of them was about breakfast. They don't usually eat breakfast together. They usually eat some fruit and oatmeal alone. Many people in Canada do that. I was surprised to hear that. In my family in Japan, my mother makes breakfast for us every day. I often eat rice, miso soup, and some small dishes with my family. My mother always says, Breakfast is important. So, I didn't think the Brown family's breakfast was good. I was interested in breakfast in other countries. I asked a girl from Taiwan in Tom's class, I want to know about breakfast in your country. How do you usually eat breakfast? She said, We don't usually eat breakfast at home. Some families don't have a kitchen. Many people eat breakfast at some food stores or buy something and eat it at work or at school. I was surprised again. After I learned that, I was interested in food around the world. Now, I sometimes make dinner for my family. I can make curry and rice, gyoza, pizza, and yakisoba. I want to be a cook in the future.");
+ $("feedback").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function renderQ8All(){
