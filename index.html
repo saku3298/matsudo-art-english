@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>英語 大問1〜5 練習</title>
+<title>英語 大問1〜7 練習</title>
 <style>
 *{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
 .wrap{max-width:520px;margin:auto;padding:16px}.top{padding:16px 0 8px}.top h1{font-size:22px;margin:0 0 5px}.muted{color:#687386;font-size:13px}
@@ -31,10 +31,34 @@
 .letterbox{width:36px;height:42px;border:2px solid #8f9bab;border-radius:5px;display:grid;place-items:center;font-size:22px;font-weight:800;background:#fff}
 .letterbox.givenbox{background:#eef3ff;border-color:#2457d6;color:#2457d6}
 
+
+.diaryRow{margin:12px 0;padding:12px;border:1px solid #dce3ec;border-radius:12px;background:#fff}
+.diaryPick{display:flex;align-items:center;gap:10px}
+.diaryLabel{font-weight:900;min-width:32px}
+.diarySelected{flex:1;text-align:left;background:#f6f8fb;border:2px solid #d3dbe6;border-radius:10px;padding:12px;font-size:16px}
+.diaryOptions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.diaryOption{border:1px solid #cfd8e5;background:#fff;border-radius:10px;padding:10px;text-align:left;font-size:16px}
+.diaryOption.used{opacity:.35}
+.diaryOption.chosen{border:2px solid #2457d6;background:#eef3ff}
+
 @media(max-width:380px){.wrap{padding:11px}.card{padding:14px}.choice{padding:11px;font-size:15px}.prompt{font-size:18px}}
+
+.diaryAnswers{display:grid;gap:8px;margin:12px 0}
+.diarySlot{width:100%;display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border:2px solid #d6deea;border-radius:11px;padding:11px 12px;font-size:16px}
+.diarySlot.active{border-color:#2457d6;background:#eef3ff}
+.sharedBank{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sharedBank .diaryOption{display:block!important;margin:0}
+@media(max-width:380px){.sharedBank{grid-template-columns:1fr 1fr}.sharedBank .diaryOption{font-size:15px;padding:9px}}
+
+
+.rewriteOriginal{background:#f6f8fb;border-radius:12px;padding:14px;margin:10px 0;font-size:17px;line-height:1.7}
+.rewriteInstruction{background:#fff8e8;border-radius:12px;padding:12px;margin:10px 0;line-height:1.6}
+.rewriteSentence{background:#f6f8fb;border-radius:12px;padding:14px;margin:10px 0;font-size:17px;line-height:2.5}
+.rewriteInput{width:105px;max-width:35vw;font-size:17px;padding:8px 10px;border:2px solid #b9c7da;border-radius:9px}
+
 </style>
 </head><body><main class="wrap">
-<div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜5｜1画面1問</div></div>
+<div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜7｜スマホ学習</div></div>
 <section id="menu" class="card menu">
 <h2>練習する大問を選ぶ</h2>
 <button onclick="start(1)">大問1　リスニング（3問）</button>
@@ -42,7 +66,9 @@
 <button onclick="start(3)">大問3　英単語完成（4問）</button>
 <button onclick="start(4)">大問4　英単語完成（4問）</button>
 <button onclick="start(5)">大問5　文法・語形（5問）</button>
-<p class="muted">問題と回答を同じ画面に表示します。大問1・2は音声、大問3・4は英単語、大問5は文法・語形です。</p>
+<button onclick="start(6)">大問6　日記文・語句選択（3問）</button>
+<button onclick="start(7)">大問7　英文の書きかえ（5問）</button>
+<p class="muted">問題と回答を同じ画面に表示します。大問1・2は音声、大問3・4は英単語、大問5は文法・語形、大問6は日記文の語句選択です。</p>
 </section>
 <section id="quiz" class="card hide">
 <div class="head"><span id="title" class="badge"></span><span id="count" class="muted"></span></div>
@@ -87,6 +113,51 @@ const sets={
  {kind:"grammar",label:"(3)",japanese:"父は日曜日に早く起きません。",sentence:"My father ( don’t ) get up early on Sundays.",answer:"doesn't",display:"My father doesn’t get up early on Sundays.",jp:"父は日曜日に早く起きません。",rule:"（ don’t ）を文に合う形にします。主語 My father は三人称単数なので doesn’t です。get up は（　）の外なので、回答は doesn’t だけです。"},
  {kind:"grammar",label:"(4)",japanese:"ミオは昨日、数学を勉強しました。",sentence:"Mio ( study ) math yesterday.",answer:"studied",display:"Mio studied math yesterday.",jp:"ミオは昨日、数学を勉強しました。",rule:"（ study ）を文に合う形にします。yesterday があるので過去形 studied です。"},
  {kind:"grammar",label:"(5)",japanese:"この帽子は、私のものです。",sentence:"This cap is ( I ).",answer:"mine",display:"This cap is mine.",jp:"この帽子は、私のものです。",rule:"（ I ）を「私のもの」という意味に変えるので、所有代名詞 mine です。"}
+],
+6:[
+ {kind:"diaryAll",
+  answers:["had","took","show"],
+  kanas:["キ","オ","ク"],
+  diary:"Today, I went to Miyu’s house. I ( ① ) a good time with Miyu and her mother. Miyu’s mother has a lot of kimonos. I tried on one of them. Miyu’s grandmother bought it. It was very beautiful. Miyu ( ② ) some pictures of me in the kimono. I was very happy. I want to ( ③ ) them to my family and friends in my country.",
+  completed:"Today, I went to Miyu’s house. I had a good time with Miyu and her mother. Miyu’s mother has a lot of kimonos. I tried on one of them. Miyu’s grandmother bought it. It was very beautiful. Miyu took some pictures of me in the kimono. I was very happy. I want to show them to my family and friends in my country.",
+  jp:"今日、私はミユの家に行きました。私はミユと彼女のお母さんと楽しい時間を過ごしました。ミユのお母さんはたくさんの着物を持っています。私はそのうちの1着を試着しました。ミユのおばあさんがそれを買いました。それはとてもきれいでした。ミユは着物を着た私の写真を何枚か撮りました。私はとてもうれしかったです。私はそれらの写真を、自分の国の家族や友達に見せたいです。"}
+],
+7:[
+ {kind:"rewrite",label:"(1)",
+  original:"Many students don’t go to school on Sunday.",
+  instruction:"下線部を「次の日曜日」にかえて、未来の否定文に",
+  afterParts:["Many students "," go to school "," Sunday."],
+  answers:["won’t","next"],
+  display:"Many students won’t go to school next Sunday.",
+  rule:"未来の否定文は will not ～。短縮形は won’t です。「次の日曜日」は next Sunday です。"},
+ {kind:"rewrite",label:"(2)",
+  original:"I play baseball.",
+  instruction:"文末に「明日」を入れて、未来の疑問文に",
+  afterParts:[""," you "," baseball tomorrow?"],
+  answers:["Will","play"],
+  display:"Will you play baseball tomorrow?",
+  rule:"未来の疑問文は Will＋主語＋動詞の原形 ～? の形です。play は原形のまま使います。"},
+ {kind:"rewrite",label:"(3)",
+  original:"I went to the library last week.",
+  instruction:"下線部を「明日」にかえて、未来の文に",
+  afterParts:["I "," "," to go to the library tomorrow."],
+  answers:["am","going"],
+  display:"I am going to go to the library tomorrow.",
+  rule:"be going to ～ で「～する予定です／つもりです」。主語が I なので be動詞は am です。"},
+ {kind:"rewrite",label:"(4)",
+  original:"I’m watching TV now.",
+  instruction:"下線部を「そのとき」にかえて、過去進行形の疑問文に",
+  afterParts:[""," you "," TV at that time?"],
+  answers:["Were","watching"],
+  display:"Were you watching TV at that time?",
+  rule:"過去進行形の疑問文は Was/Were＋主語＋動詞の-ing形 ～?。主語が you なので Were です。"},
+ {kind:"rewrite",label:"(5)",
+  original:"He talks with his father every day.",
+  instruction:"下線部を「昨日の9時」にかえて、過去進行形の文に",
+  afterParts:["He "," "," with his father at 9:00 yesterday."],
+  answers:["was","talking"],
+  display:"He was talking with his father at 9:00 yesterday.",
+  rule:"過去進行形は was/were＋動詞の-ing形。主語が He なので was talking です。"}
 ]};
 let section=1,idx=0,score=0,wrong=[],selected=null;
 const $=x=>document.getElementById(x);
@@ -95,7 +166,7 @@ function start(n,list=null){section=n;idx=0;score=0;wrong=[];selected=null;sets.
 function render(){
  const q=sets._run[idx];
  selected=null;
- const sectionName=(section===1||section===2)?"リスニング":(section===3||section===4)?"英単語完成":"文法・語形";
+ const sectionName=(section===1||section===2)?"リスニング":(section===3||section===4)?"英単語完成":section===5?"文法・語形":section===6?"日記文・語句選択":"英文の書きかえ";
  $("title").textContent=`大問${section} ${sectionName}`;
  $("count").textContent=`${idx+1} / ${sets._run.length}問`;
  $("bar").style.width=`${idx/sets._run.length*100}%`;
@@ -124,6 +195,72 @@ function render(){
    inp.addEventListener("input",()=>{$("check").disabled=!inp.value.trim()});
    inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("check").disabled)$("check").click()});
    setTimeout(()=>inp.focus(),50);
+   return;
+ }
+ if(section===7){
+   $("audio").innerHTML="";
+   $("prompt").innerHTML=`<div class="small muted">次の英文を、（　）内の指示に従って下の文のように書きかえます。下線部にあてはまる英単語を1語ずつ入力しましょう。</div>
+     <div class="rewriteOriginal"><b>${q.label}</b>　${q.original}</div>
+     <div class="rewriteInstruction">（${q.instruction}）</div>
+     <div class="rewriteSentence">${q.afterParts[0]}<input id="rw0" class="rewriteInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"> ${q.afterParts[1]}<input id="rw1" class="rewriteInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"> ${q.afterParts[2]}</div>`;
+   $("choices").innerHTML="";
+   const ins=[$("rw0"),$("rw1")];
+   const validate=()=>{$("check").disabled=ins.some(x=>!x.value.trim())};
+   ins.forEach((x,i)=>{
+     x.addEventListener("input",validate);
+     x.addEventListener("keydown",e=>{
+       if(e.key==="Enter"){
+         if(i===0) ins[1].focus();
+         else if(!$("check").disabled) $("check").click();
+       }
+     });
+   });
+   $("check").disabled=true;
+   setTimeout(()=>ins[0].focus(),50);
+   return;
+ }
+ if(section===6){
+   const opts=[["ア","see"],["イ","look"],["ウ","make"],["エ","talked"],["オ","took"],["カ","eat"],["キ","had"],["ク","show"]];
+   $("audio").innerHTML="";
+   $("prompt").innerHTML=`<div class="small muted">留学生メグ（Meg）の日記です。①〜③に入る最も適当な語を、ア〜クからそれぞれ1つ選びます。<b>同じものを2回使うことはできません。</b></div>
+     <div class="sentence" style="line-height:1.8">${q.diary}</div>
+     <div class="small muted">※ try on ＝ ～を試着する</div>
+     <div class="sentence"><b>①〜③をすべて選んでから答え合わせしましょう。</b></div>`;
+   $("choices").innerHTML=`
+     <div class="diaryAnswers">
+       ${[0,1,2].map(i=>`<button type="button" class="diarySlot ${i===0?"active":""}" id="slot${i}" data-i="${i}">
+         <span class="diaryLabel">${["①","②","③"][i]}</span>
+         <span id="slotText${i}">選択してください</span>
+       </button>`).join("")}
+     </div>
+     <div class="small muted" style="margin:10px 0 6px">入力する場所を①〜③から選び、そのあと語を選んでください。</div>
+     <div class="diaryOptions sharedBank" id="sharedBank">
+       ${opts.map(([k,w])=>`<button type="button" class="diaryOption" data-word="${w}"><b>${k}</b>　${w}</button>`).join("")}
+     </div>
+     <div id="conditionMsg" class="feedback ng hide" style="margin-top:12px"></div>`;
+   const selectedDiary=["","",""];
+   let active=0;
+   function refreshSlots(){
+     [0,1,2].forEach(i=>{
+       $("slot"+i).classList.toggle("active",i===active);
+       const v=selectedDiary[i];
+       $("slotText"+i).textContent=v ? opts.find(x=>x[1]===v).join("　") : "選択してください";
+     });
+     $("check").disabled=selectedDiary.some(v=>!v);
+   }
+   document.querySelectorAll(".diarySlot").forEach(b=>b.onclick=()=>{
+     active=Number(b.dataset.i);
+     refreshSlots();
+   });
+   document.querySelectorAll("#sharedBank .diaryOption").forEach(b=>b.onclick=()=>{
+     selectedDiary[active]=b.dataset.word;
+     $("conditionMsg").classList.add("hide");
+     if(active<2) active++;
+     refreshSlots();
+   });
+   window.currentDiaryAnswers=selectedDiary;
+   window.diaryConditionWarnings=0;
+   refreshSlots();
    return;
  }
  if(section===5){
@@ -193,6 +330,76 @@ $("check").onclick=()=>{
    $("next").classList.remove("hide");
    $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
    $("bar").style.width=`${(idx+1)/sets._run.length*100}%`;
+   return;
+ }
+ if(section===7){
+   const norm=s=>s.trim().normalize("NFKC").toLowerCase().replace(/[’‘]/g,"'");
+   const vals=[norm($("rw0").value),norm($("rw1").value)];
+   const ans=q.answers.map(norm);
+   const oks=vals.map((v,i)=>v===ans[i] || (ans[i]==="won't" && v==="wont"));
+   const ok=oks.every(Boolean);
+   if(ok)score++;else wrong.push(q);
+   [$("rw0"),$("rw1")].forEach(x=>x.disabled=true);
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div class="transcript">
+       <div>1語目：<b>${q.answers[0]}</b>　${oks[0]?"○":"×"}</div>
+       <div>2語目：<b>${q.answers[1]}</b>　${oks[1]?"○":"×"}</div><br>
+       <b>完成英文</b><br><div class="english">${q.display}</div><br>
+       <b>ポイント</b><br>${q.rule}<br><br>
+       <button type="button" class="btn sub" id="playRewrite">▶ 完成した英文を聞く</button>
+     </div>`;
+   $("playRewrite").onclick=()=>say(q.display);
+   $("check").classList.add("hide");
+   $("next").classList.remove("hide");
+   $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
+   $("bar").style.width=`${(idx+1)/sets._run.length*100}%`;
+   return;
+ }
+ if(section===6){
+   const vals=window.currentDiaryAnswers || ["","",""];
+   const duplicated=new Set(vals).size!==vals.length;
+   if(duplicated){
+     window.diaryConditionWarnings=(window.diaryConditionWarnings||0)+1;
+     const msg=window.diaryConditionWarnings===1
+       ?"問題文の条件をもう一度確認してください。まだ採点しません。"
+       :"「同じものを2回使うことはできません」という条件を確認してください。";
+     $("conditionMsg").textContent=msg;
+     $("conditionMsg").classList.remove("hide");
+     $("conditionMsg").scrollIntoView({behavior:"smooth",block:"nearest"});
+     return;
+   }
+
+   const oks=vals.map((v,i)=>v===q.answers[i]);
+   const ok=oks.every(Boolean);
+   if(ok)score++;else wrong.push(q);
+   document.querySelectorAll(".diarySlot,.diaryOption").forEach(x=>x.disabled=true);
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 全問正解！":"答えを確認しましょう"}</b>
+     <div class="transcript">
+       <div>① <b>${q.kanas[0]}　${q.answers[0]}</b>　${oks[0]?"○":"×"}</div>
+       <div>② <b>${q.kanas[1]}　${q.answers[1]}</b>　${oks[1]?"○":"×"}</div>
+       <div>③ <b>${q.kanas[2]}　${q.answers[2]}</b>　${oks[2]?"○":"×"}</div><br>
+       <b>ポイント</b><br>
+       ① have a good time ＝「楽しい時を過ごす」→ 過去形 <b>had</b><br>
+       ② take a picture ＝「写真を撮る」→ 過去形 <b>took</b><br>
+       ③ show ～ to ... ＝「～を…に見せる」。want to の後ろなので <b>show</b><br><br>
+       <button type="button" class="btn sub" id="showDiaryExplanation">英文・日本語訳を見る</button>
+       <div id="diaryExplanation" class="hide" style="margin-top:12px">
+         <b>完成した英文</b><br><div class="english">${q.completed}</div><br>
+         <button type="button" class="btn sub" id="playDiary">▶ 完成した英文を聞く</button><br><br>
+         <b>日本語訳</b><br>${q.jp}
+       </div>
+     </div>`;
+   $("showDiaryExplanation").onclick=()=>{
+      $("diaryExplanation").classList.remove("hide");
+      $("showDiaryExplanation").classList.add("hide");
+      $("playDiary").onclick=()=>say(q.completed);
+   };
+   $("check").classList.add("hide");
+   $("next").classList.remove("hide");
+   $("next").textContent="結果を見る";
+   $("bar").style.width="100%";
    return;
  }
  if(section===5){
@@ -269,7 +476,7 @@ $("next").onclick=()=>{idx++;if(idx<sets._run.length)render();else finish()}
 function finish(){
  $("quiz").classList.add("hide");
  $("result").classList.remove("hide");
- const nextSection=section<5?section+1:null;
+ const nextSection=section<7?section+1:null;
  $("result").innerHTML=`<h2>大問${section} 結果</h2>
    <div class="score">${score} / ${sets._run.length}問 正解</div>
    ${wrong.length?`<button class="btn" id="retryWrong">間違えた問題だけやる</button>`:`<p class="ok" style="text-align:center;font-weight:800">全問正解！</p>`}
