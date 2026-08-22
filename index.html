@@ -1,1 +1,284 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="assets/style.css"><title>英語トレーニング</title></head><body><header><div class="wrap"><p>松戸高校芸術科 合格プロジェクト</p><h1>英語やり直しトレーニング</h1></div></header><main class="wrap"><section class="card"><h2>① 1問ずつ基礎練習</h2><a class="btn" href="section.html?no=5">文法から練習</a></section><section class="card"><h2>② 大問別トレーニング</h2><p>大問1・2は音声リスニング対応。</p><a class="btn" href="sections.html">大問を選ぶ</a></section><section class="card"><h2>③ 10問ミニテスト</h2><a class="btn" href="mini.html">10問に挑戦</a></section><section class="card"><h2>④ 41問総合テスト</h2><p>最初から挑戦できます。リスニング問題は音声再生できます。</p><a class="btn" href="full.html">41問に挑戦</a></section></main></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>英語 大問1〜5 練習</title>
+<style>
+*{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
+.wrap{max-width:520px;margin:auto;padding:16px}.top{padding:16px 0 8px}.top h1{font-size:22px;margin:0 0 5px}.muted{color:#687386;font-size:13px}
+.card{background:white;border:1px solid #dce3ec;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 4px 16px rgba(20,35,70,.05)}
+.menu button,.btn{width:100%;border:0;border-radius:13px;padding:15px;font-size:17px;font-weight:800;cursor:pointer;margin:7px 0;background:#2457d6;color:white}
+.btn.sub{background:#edf2fa;color:#25405f}.btn:disabled{opacity:.45}.head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.badge{font-size:13px;background:#eef3ff;color:#2457d6;padding:5px 9px;border-radius:999px;font-weight:700}
+.audio{background:#eef3ff;border-radius:14px;padding:12px;margin:12px 0}.audio .btn{margin:3px 0}
+.prompt{font-size:19px;font-weight:800;margin:14px 0 9px}
+.choices{display:grid;gap:9px}.choice{width:100%;text-align:left;background:white;border:2px solid #d9e0ea;border-radius:13px;padding:13px;font-size:16px;cursor:pointer}
+.choice.selected{border-color:#2457d6;background:#f0f4ff}.choice.correct{border-color:#18864b;background:#edf9f1}.choice.wrong{border-color:#c63d35;background:#fff0ef}
+.icon{font-size:27px;display:inline-block;width:42px;text-align:center;vertical-align:middle}.feedback{border-radius:13px;padding:13px;margin-top:12px;background:#f5f7fa}.ok{color:#14763f}.ng{color:#b22d27}
+.transcript{margin-top:10px;border-top:1px solid #dfe5ed;padding-top:10px;font-size:14px}
+.explainPanel{margin-top:10px;padding:13px;border:1px solid #d9e2ef;border-radius:12px;background:#fbfcfe;color:#172033}
+.warn{font-size:12px;color:#9a5a00;background:#fff7e8;padding:8px;border-radius:8px;margin-bottom:10px}
+.english{line-height:1.8;margin:10px 0;padding:10px;background:#f5f7fa;border-radius:9px}
+.jp{line-height:1.8;margin:10px 0}.hide{display:none}.score{font-size:30px;font-weight:900;text-align:center;margin:12px}
+.small{font-size:13px}.progress{height:7px;background:#e8edf4;border-radius:9px;overflow:hidden;margin:8px 0 14px}.bar{height:100%;background:#2457d6}
+.scene{display:flex;justify-content:center;align-items:center;background:#fff;border:1px solid #dbe2ea;border-radius:14px;padding:8px;margin:10px 0}.q3img{display:block;width:100%;max-width:430px;height:auto;border-radius:7px}
+.sentence{font-size:19px;line-height:1.8;background:#f7f9fc;border-radius:12px;padding:13px;margin:10px 0}
+.wordrow{display:flex;align-items:center;gap:6px;margin:12px 0}.given{font-size:27px;font-weight:900}.wordinput{flex:1;min-width:0;font-size:22px;padding:12px;border:2px solid #cfd8e5;border-radius:12px}
+.wordinput:focus{border-color:#2457d6;outline:none}.completeWord{font-size:22px;font-weight:900}
+
+.q4img{display:block;width:100%;max-width:250px;height:auto;margin:auto;border-radius:6px}
+.letterboxes{display:flex;gap:5px;flex-wrap:nowrap;margin:12px 0}
+.letterbox{width:36px;height:42px;border:2px solid #8f9bab;border-radius:5px;display:grid;place-items:center;font-size:22px;font-weight:800;background:#fff}
+.letterbox.givenbox{background:#eef3ff;border-color:#2457d6;color:#2457d6}
+
+@media(max-width:380px){.wrap{padding:11px}.card{padding:14px}.choice{padding:11px;font-size:15px}.prompt{font-size:18px}}
+</style>
+</head><body><main class="wrap">
+<div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜5｜1画面1問</div></div>
+<section id="menu" class="card menu">
+<h2>練習する大問を選ぶ</h2>
+<button onclick="start(1)">大問1　リスニング（3問）</button>
+<button onclick="start(2)">大問2　リスニング（4問）</button>
+<button onclick="start(3)">大問3　英単語完成（4問）</button>
+<button onclick="start(4)">大問4　英単語完成（4問）</button>
+<button onclick="start(5)">大問5　文法・語形（5問）</button>
+<p class="muted">問題と回答を同じ画面に表示します。大問1・2は音声、大問3・4は英単語、大問5は文法・語形です。</p>
+</section>
+<section id="quiz" class="card hide">
+<div class="head"><span id="title" class="badge"></span><span id="count" class="muted"></span></div>
+<div class="progress"><div id="bar" class="bar"></div></div>
+<div id="audio"></div>
+<div id="prompt" class="prompt"></div>
+<div id="choices" class="choices"></div>
+<button id="check" class="btn" disabled>答え合わせ</button>
+<div id="feedback" class="feedback hide"></div>
+<button id="next" class="btn sub hide">次の問題 →</button>
+</section>
+<section id="result" class="card hide"></section>
+</main>
+<script>
+const sets={
+1:[
+ {speech:"It will be rainy tomorrow.",prompt:"放送の内容に合う「明日の天気」を選びなさい。",choices:[["ア","☁️","くもり"],["イ","☃️","雪"],["ウ","☀️","晴れ"],["エ","☔","雨"]],a:"エ",jp:"It will be rainy tomorrow. ＝ 明日は雨でしょう。",point:"rainy ＝ 雨の、tomorrow ＝ 明日"},
+ {speech:"Today is July 3. Takashi was running at 7:00 a.m. yesterday.",prompt:"放送の内容に合うTakashiを選びなさい。",choices:[["ア","🏃","7月3日 午前7時"],["イ","🏃","7月2日 午後7時"],["ウ","🏃","7月2日 午前7時"],["エ","🏃","7月4日 午前7時"]],a:"ウ",jp:"Today is July 3. Takashi was running at 7:00 a.m. yesterday.",point:"yesterday ＝ 昨日。7月3日の昨日なので7月2日。a.m. ＝ 午前"},
+ {speech:"My sister wants new shoes.",prompt:"放送の内容に合うものを選びなさい。",choices:[["ア","👟","くつ"],["イ","🍪","お菓子"],["ウ","🧢","帽子"],["エ","📚","辞書"]],a:"ア",jp:"My sister wants new shoes. ＝ 私の姉（妹）は新しいくつを欲しがっています。",point:"shoes ＝ くつ"}
+],
+2:[
+ {passage:"Hello. I'm Asuka. I'm thirteen. Today, I'm going to talk about my sister, Haruka. She is fifteen years old. She is good at cooking. Last week, she made some cookies for me. They were delicious. We are good sisters. We often go shopping on weekends. We will go to see a movie next Sunday. I can't wait.",question:"How old is Asuka?",prompt:"質問を聞いて、答えを選びなさい。",choices:[["ア","","She is 12."],["イ","","She is 13."],["ウ","","She is 14."],["エ","","She is 15."]],a:"イ",jp:"How old is Asuka? → She is 13.",point:"I'm thirteen. が答えの根拠です。"},
+ {passage:"Hello. I'm Asuka. I'm thirteen. Today, I'm going to talk about my sister, Haruka. She is fifteen years old. She is good at cooking. Last week, she made some cookies for me. They were delicious. We are good sisters. We often go shopping on weekends. We will go to see a movie next Sunday. I can't wait.",question:"What did Haruka make for Asuka last week?",prompt:"質問を聞いて、答えを選びなさい。",choices:[["ア","","Some cookies."],["イ","","A movie."],["ウ","","Dinner."],["エ","","A cake."]],a:"ア",jp:"What did Haruka make for Asuka last week? → Some cookies.",point:"Last week, she made some cookies for me. が根拠です。"},
+ {passage:"Hello. I'm Asuka. I'm thirteen. Today, I'm going to talk about my sister, Haruka. She is fifteen years old. She is good at cooking. Last week, she made some cookies for me. They were delicious. We are good sisters. We often go shopping on weekends. We will go to see a movie next Sunday. I can't wait.",question:"Do Asuka and Haruka often go fishing on weekends?",prompt:"質問を聞いて、答えを選びなさい。",choices:[["ア","","Yes, they do."],["イ","","Yes, they are."],["ウ","","No, they don't."],["エ","","No, they aren't."]],a:"ウ",jp:"Do Asuka and Haruka often go fishing on weekends? → No, they don't.",point:"本文では We often go shopping on weekends. と言っています。"},
+ {passage:"Hello. I'm Asuka. I'm thirteen. Today, I'm going to talk about my sister, Haruka. She is fifteen years old. She is good at cooking. Last week, she made some cookies for me. They were delicious. We are good sisters. We often go shopping on weekends. We will go to see a movie next Sunday. I can't wait.",question:"When will Asuka and Haruka go to see a movie?",prompt:"質問を聞いて、答えを選びなさい。",choices:[["ア","","Today."],["イ","","Next Saturday."],["ウ","","Last Sunday."],["エ","","Next Sunday."]],a:"エ",jp:"When will Asuka and Haruka go to see a movie? → Next Sunday.",point:"We will go to see a movie next Sunday. が根拠です。"}
+],
+3:[
+ {kind:"word",scene:"☀️　🌳　🧒 ⚽ 🧒　🧒　🕧",sentence:"It’s ① s____ and hot today.",given:"s",rest:"unny",word:"sunny",meaning:"sunny ＝ 晴れた",full:"It’s sunny and hot today. ＝ 今日は晴れていて暑いです。"},
+ {kind:"word",scene:"🌳　🧒　🧒　🧒　⚽",sentence:"Three ② c_______ are in the park.",given:"c",rest:"hildren",word:"children",meaning:"children ＝ 子どもたち（child の複数形）",full:"Three children are in the park. ＝ 3人の子どもたちが公園にいます。"},
+ {kind:"word",scene:"🧒　⚽　🧒　🧒",sentence:"They’re ③ p______ soccer.",given:"p",rest:"laying",word:"playing",meaning:"playing ＝ play の -ing形",full:"They’re playing soccer. ＝ 彼らはサッカーをしています。"},
+ {kind:"word",scene:"🕧",sentence:"It’s ④ t_____ thirty now.",given:"t",rest:"welve",word:"twelve",meaning:"twelve ＝ 12",full:"It’s twelve thirty now. ＝ 今は12時30分です。"}
+],
+4:[
+ {kind:"word4",label:"(1)",img:"assets/q4-station.png",given:"s",word:"station",meaning:"station ＝ 駅"},
+ {kind:"word4",label:"(2)",img:"assets/q4-uncle.png",given:"u",word:"uncle",meaning:"uncle ＝ おじ"},
+ {kind:"word4",label:"(3)",img:"assets/q4-hundred.png",given:"h",word:"hundred",meaning:"hundred ＝ 100"},
+ {kind:"word4",label:"(4)",img:"assets/q4-science.png",given:"s",word:"science",meaning:"science ＝ 理科"}
+],
+5:[
+ {kind:"grammar",label:"(1)",japanese:"彼らはそのとき、何をしていましたか。",sentence:"What ( be ) they doing at that time?",answer:"were",display:"What were they doing at that time?",jp:"彼らはそのとき、何をしていましたか。",rule:"（ be ）を文に合う形にします。主語が they、時制が過去なので were です。"},
+ {kind:"grammar",label:"(2)",japanese:"あなたは昨日、そのレストランへ行きましたか。",sentence:"( Do ) you go to the restaurant yesterday?",answer:"Did",display:"Did you go to the restaurant yesterday?",jp:"あなたは昨日、そのレストランへ行きましたか。",rule:"（ Do ）を文に合う形にします。yesterday がある過去の疑問文なので Did です。"},
+ {kind:"grammar",label:"(3)",japanese:"父は日曜日に早く起きません。",sentence:"My father ( don’t ) get up early on Sundays.",answer:"doesn't",display:"My father doesn’t get up early on Sundays.",jp:"父は日曜日に早く起きません。",rule:"（ don’t ）を文に合う形にします。主語 My father は三人称単数なので doesn’t です。get up は（　）の外なので、回答は doesn’t だけです。"},
+ {kind:"grammar",label:"(4)",japanese:"ミオは昨日、数学を勉強しました。",sentence:"Mio ( study ) math yesterday.",answer:"studied",display:"Mio studied math yesterday.",jp:"ミオは昨日、数学を勉強しました。",rule:"（ study ）を文に合う形にします。yesterday があるので過去形 studied です。"},
+ {kind:"grammar",label:"(5)",japanese:"この帽子は、私のものです。",sentence:"This cap is ( I ).",answer:"mine",display:"This cap is mine.",jp:"この帽子は、私のものです。",rule:"（ I ）を「私のもの」という意味に変えるので、所有代名詞 mine です。"}
+]};
+let section=1,idx=0,score=0,wrong=[],selected=null;
+const $=x=>document.getElementById(x);
+function say(t){if(!speechSynthesis){alert("このブラウザでは音声を利用できません");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.82;speechSynthesis.speak(u)}
+function start(n,list=null){section=n;idx=0;score=0;wrong=[];selected=null;sets._run=list||sets[n];$("menu").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");render()}
+function render(){
+ const q=sets._run[idx];
+ selected=null;
+ const sectionName=(section===1||section===2)?"リスニング":(section===3||section===4)?"英単語完成":"文法・語形";
+ $("title").textContent=`大問${section} ${sectionName}`;
+ $("count").textContent=`${idx+1} / ${sets._run.length}問`;
+ $("bar").style.width=`${idx/sets._run.length*100}%`;
+ $("feedback").className="feedback hide";
+ $("next").classList.add("hide");
+ $("check").classList.remove("hide");
+
+ if(section===3 || section===4){
+   if(section===3){
+     $("audio").innerHTML=`<div class="scene"><img src="assets/question3-park.png" alt="大問3 公園の絵" class="q3img"></div>`;
+   }else{
+     $("audio").innerHTML=`<div class="scene"><img src="${q.img}" alt="大問4 ${q.label} の絵" class="q4img"></div>`;
+   }
+   const boxes=[...q.word].map((ch,i)=>`<span class="letterbox ${i===0?"givenbox":""}">${i===0?ch:""}</span>`).join("");
+   const intro=section===3
+     ?"□に1文字ずつ入れ、できた英単語を書きましょう。□の数が単語の文字数です。"
+     :"絵に合うように英単語を完成させましょう。最初の文字と□の数がヒントです。";
+   const body=section===3?`<div class="sentence">${q.sentence}</div>`:`<div class="sentence">${q.label}</div>`;
+   $("prompt").innerHTML=`<div class="small muted">${intro}</div>
+     ${body}
+     <div class="letterboxes">${boxes}</div>
+     <div class="wordrow"><input id="wordAnswer" class="wordinput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="${q.word.length}" placeholder="${q.word.length}文字の英単語"></div>`;
+   $("choices").innerHTML="";
+   $("check").disabled=true;
+   const inp=$("wordAnswer");
+   inp.addEventListener("input",()=>{$("check").disabled=!inp.value.trim()});
+   inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("check").disabled)$("check").click()});
+   setTimeout(()=>inp.focus(),50);
+   return;
+ }
+ if(section===5){
+   $("audio").innerHTML="";
+   $("prompt").innerHTML=`<div class="small muted">次の日本文の意味を表す英文になるように、（　）の中の語を最も適当な形にし、英単語1語で答えましょう。</div>
+     <div class="sentence"><b>${q.label}</b>　${q.japanese}<br><br>${q.sentence}</div>
+     <div class="wordrow"><input id="grammarAnswer" class="wordinput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="答えを入力"></div>`;
+   $("choices").innerHTML="";
+   $("check").disabled=true;
+   const inp=$("grammarAnswer");
+   inp.addEventListener("input",()=>{$("check").disabled=!inp.value.trim()});
+   inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("check").disabled)$("check").click()});
+   setTimeout(()=>inp.focus(),50);
+   return;
+ }
+ if(section===1){
+   $("audio").innerHTML=`<div class="audio">
+     <button class="btn sub" id="playMain">▶ 英語を聞く</button>
+     <div class="small muted">何度でも再生できます</div>
+   </div>`;
+   $("playMain").onclick=()=>say(q.speech);
+ }else{
+   $("audio").innerHTML=`<div class="audio">
+     <button class="btn sub" id="playPassage">▶ 会話を聞く</button>
+     <button class="btn sub" id="playQuestion">▶ 質問を聞く</button>
+     <div class="small muted">会話と質問は何度でも聞けます</div>
+   </div>`;
+   $("playPassage").onclick=()=>say(q.passage);
+   $("playQuestion").onclick=()=>say(q.question);
+ }
+
+ $("prompt").textContent=q.prompt;
+ $("choices").innerHTML="";
+ q.choices.forEach(([k,ic,tx])=>{
+   let b=document.createElement("button");
+   b.className="choice";
+   b.dataset.key=k;
+   b.innerHTML=`<b>${k}</b> ${ic?`<span class="icon">${ic}</span>`:""} ${tx}`;
+   b.onclick=()=>{
+     document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
+     b.classList.add("selected");
+     selected=k;
+     $("check").disabled=false;
+   };
+   $("choices").appendChild(b);
+ });
+ $("check").disabled=true;
+}
+$("check").onclick=()=>{
+ const q=sets._run[idx];
+
+ if(section===3 || section===4){
+   const raw=$("wordAnswer").value.trim().toLowerCase().normalize("NFKC");
+   const ok=(raw===q.word);
+   if(ok)score++;else wrong.push(q);
+   $("wordAnswer").disabled=true;
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   const extra=section===3?`<br><b>英文で確認</b><br>${q.full}`:"";
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div class="transcript">
+       <div>正解：<span class="completeWord">${q.word}</span></div>
+       <div>${q.meaning}</div>${extra}
+       <button type="button" class="btn sub" id="playWord">▶ 単語を聞く</button>
+     </div>`;
+   $("playWord").onclick=()=>say(q.word);
+   $("check").classList.add("hide");
+   $("next").classList.remove("hide");
+   $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
+   $("bar").style.width=`${(idx+1)/sets._run.length*100}%`;
+   return;
+ }
+ if(section===5){
+   const raw=$("grammarAnswer").value.trim().normalize("NFKC").toLowerCase().replace(/[’‘]/g,"'");
+   const ans=q.answer.toLowerCase();
+   const ok=(raw===ans || (ans==="doesn't" && raw==="doesnt"));
+   if(ok)score++;else wrong.push(q);
+   $("grammarAnswer").disabled=true;
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div class="transcript">
+       <div><b>正解：</b> ${q.answer}</div>
+       <div class="english">${q.display}</div>
+       <div>${q.jp}</div><br>
+       <b>ポイント</b><br>${q.rule}
+       <button type="button" class="btn sub" id="playGrammar">▶ 完成した英文を聞く</button>
+     </div>`;
+   $("playGrammar").onclick=()=>say(q.display);
+   $("check").classList.add("hide");
+   $("next").classList.remove("hide");
+   $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
+   $("bar").style.width=`${(idx+1)/sets._run.length*100}%`;
+   return;
+ }
+ const ok=selected===q.a;
+ if(ok)score++;else wrong.push(q);
+ document.querySelectorAll(".choice").forEach(b=>{
+   b.disabled=true;
+   if(b.dataset.key===q.a)b.classList.add("correct");
+   if(b.dataset.key===selected&&!ok)b.classList.add("wrong")
+ });
+
+ if(section===1){
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div class="transcript"><b>放送英文・確認</b><br>${q.jp}<br><br><b>ポイント</b><br>${q.point}</div>`;
+ }else{
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div style="margin-top:8px"><b>正解：</b>${q.a}</div>
+     <button type="button" class="btn sub" id="showExplain">会話英文・日本語訳・解説を見る</button>
+     <div id="explainPanel" class="explainPanel hide"></div>`;
+
+   $("showExplain").onclick=()=>{
+     const panel=$("explainPanel");
+     const opened=!panel.classList.contains("hide");
+     if(opened){
+       panel.classList.add("hide");
+       $("showExplain").textContent="会話英文・日本語訳・解説を見る";
+       return;
+     }
+     panel.innerHTML=`<div class="warn">※会話全文には、このあとの問題のヒントも含まれます。</div>
+       <b>会話英文</b>
+       <div class="english">${q.passage}</div>
+       <button type="button" class="btn sub" id="listenWithText">▶ 会話を英文を見ながらもう一度聞く</button>
+       <b>日本語訳</b>
+       <div class="jp">${translatePassage()}</div>
+       <b>この問題の解説</b>
+       <div class="transcript">${q.jp}<br>${q.point}</div>`;
+     panel.classList.remove("hide");
+     $("showExplain").textContent="解説を閉じる";
+     $("listenWithText").onclick=()=>say(q.passage);
+   };
+ }
+ $("check").classList.add("hide");
+ $("next").classList.remove("hide");
+ $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
+ $("bar").style.width=`${(idx+1)/sets._run.length*100}%`
+}
+function translatePassage(){
+ return "こんにちは。私はAsukaです。13歳です。今日は姉（妹）のHarukaについて話します。Harukaは15歳です。料理が得意です。先週、私のためにクッキーを作ってくれました。それはおいしかったです。私たちは仲のよい姉妹です。週末にはよく買い物に行きます。次の日曜日には映画を見に行く予定です。とても楽しみです。";
+}
+$("next").onclick=()=>{idx++;if(idx<sets._run.length)render();else finish()}
+function finish(){
+ $("quiz").classList.add("hide");
+ $("result").classList.remove("hide");
+ const nextSection=section<5?section+1:null;
+ $("result").innerHTML=`<h2>大問${section} 結果</h2>
+   <div class="score">${score} / ${sets._run.length}問 正解</div>
+   ${wrong.length?`<button class="btn" id="retryWrong">間違えた問題だけやる</button>`:`<p class="ok" style="text-align:center;font-weight:800">全問正解！</p>`}
+   <button class="btn sub" id="retryAll">大問${section}を最初から</button>
+   ${nextSection?`<button class="btn sub" id="goNext">大問${nextSection}へ進む</button>`:""}
+   <button class="btn sub" id="backMenu">大問を選ぶ</button>`;
+ if(wrong.length)$("retryWrong").onclick=()=>start(section,[...wrong]);
+ $("retryAll").onclick=()=>start(section);
+ if(nextSection)$("goNext").onclick=()=>start(nextSection);
+ $("backMenu").onclick=()=>location.reload();
+}
+</script></body></html>
