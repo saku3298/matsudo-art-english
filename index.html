@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>英語 大問1〜7 練習</title>
+<title>英語 大問1〜8 練習</title>
 <style>
 *{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
 .wrap{max-width:520px;margin:auto;padding:16px}.top{padding:16px 0 8px}.top h1{font-size:22px;margin:0 0 5px}.muted{color:#687386;font-size:13px}
@@ -56,9 +56,92 @@
 .rewriteSentence{background:#f6f8fb;border-radius:12px;padding:14px;margin:10px 0;font-size:17px;line-height:2.5}
 .rewriteInput{width:105px;max-width:35vw;font-size:17px;padding:8px 10px;border:2px solid #b9c7da;border-radius:9px}
 
+
+.q8Wrap{display:block}
+.q8PassageBox{background:#f7f9fc;border:1px solid #dce3ec;border-radius:14px;padding:14px;margin:10px 0;line-height:1.75;font-size:15px}
+.q8Poster{display:block;width:100%;max-width:310px;height:auto;margin:20px auto 12px;border:1px solid #ccd5e2;border-radius:8px;background:#fff}
+.q8QuestionBox{background:#fff;border:1px solid #dce3ec;border-radius:14px;padding:14px}
+.q8Toggle{margin:8px 0}
+.q8AnswerInput{width:100%;font-size:18px;padding:12px;border:2px solid #cbd5e2;border-radius:10px}
+.q8Multi{display:grid;gap:8px}
+.q8Choice{width:100%;text-align:left;background:#fff;border:2px solid #d9e0ea;border-radius:11px;padding:11px;font-size:15px}
+.q8Choice.selected{border-color:#2457d6;background:#eef3ff}
+.q8ReorderBank,.q8ReorderAnswer{display:flex;flex-wrap:wrap;gap:8px;padding:11px;border-radius:11px;min-height:48px}
+.q8ReorderBank{background:#f6f8fb;border:1px solid #dce3ec}
+.q8ReorderAnswer{background:#fff;border:2px dashed #b9c7da;margin:10px 0}
+.q8Chip{border:1px solid #becada;background:#fff;border-radius:9px;padding:9px 11px;font-size:15px}
+.q8Chip.used{opacity:.3}
+.q8Intro{text-align:left}
+@media(min-width:800px){
+  .q8PassageBox{font-size:16px;line-height:1.85}
+  .q8QuestionBox{max-width:820px;margin-left:auto;margin-right:auto}
+}
+
+
+.q8PassagePanel{width:100%}
+.q8BackRow{display:flex;gap:8px;margin:8px 0 12px}
+.q8BackRow .btn{margin:0}
+.q8QuestionBox{width:100%}
+
+
+.q8PosterHtml{
+  width:100%;
+  max-width:330px;
+  margin:22px auto 12px;
+  padding:14px 16px 12px;
+  border:2px solid #4a4a4a;
+  background:#fff;
+  color:#111;
+  font-family:"Yu Mincho","Hiragino Mincho ProN","Yu Gothic",serif;
+  line-height:1.45;
+}
+.q8PosterTitle{
+  font-size:22px;
+  font-weight:900;
+  text-align:center;
+  margin-bottom:10px;
+  white-space:nowrap;
+}
+.q8PosterItem{
+  font-size:16px;
+  margin:8px 0;
+}
+.q8PosterAuthor{
+  text-align:right;
+  font-size:16px;
+  margin-top:8px;
+}
+@media(max-width:380px){
+  .q8PosterHtml{padding:12px 12px 10px}
+  .q8PosterTitle{font-size:19px}
+  .q8PosterItem,.q8PosterAuthor{font-size:15px}
+}
+
+
+.q8AllQuestions{display:grid;gap:16px;margin-top:20px}
+.q8OneQuestion{background:#fff;border:1px solid #dce3ec;border-radius:14px;padding:14px}
+.q8OneQuestion h3{margin:0 0 10px;font-size:18px}
+.q8AllCheck{margin-top:18px}
+.q8ResultItem{margin:12px 0;padding:12px;border-radius:12px;background:#f7f9fc}
+.q8ReadingHeader{margin:0 0 8px;font-weight:700}
+
+
+.q8Bilingual{display:grid;gap:10px;margin-top:12px}
+.q8Line{background:#f7f9fc;border:1px solid #dce3ec;border-radius:12px;padding:12px}
+.q8English{font-size:16px;line-height:1.6;font-weight:600}
+.q8Japanese{font-size:15px;line-height:1.6;margin-top:5px}
+.q8LinePlay{margin-top:8px;padding:7px 10px!important;font-size:14px!important}
+
+
+.sourceUnderline{
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 </style>
 </head><body><main class="wrap">
-<div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜7｜スマホ学習</div></div>
+<div class="top"><h1>英語 テストやり直し</h1><div class="muted">大問1〜8｜スマホ学習</div></div>
 <section id="menu" class="card menu">
 <h2>練習する大問を選ぶ</h2>
 <button onclick="start(1)">大問1　リスニング（3問）</button>
@@ -68,6 +151,7 @@
 <button onclick="start(5)">大問5　文法・語形（5問）</button>
 <button onclick="start(6)">大問6　日記文・語句選択（3問）</button>
 <button onclick="start(7)">大問7　英文の書きかえ（5問）</button>
+<button onclick="start(8)">大問8　長文会話・ポスター（4問）</button>
 <p class="muted">問題と回答を同じ画面に表示します。大問1・2は音声、大問3・4は英単語、大問5は文法・語形、大問6は日記文の語句選択です。</p>
 </section>
 <section id="quiz" class="card hide">
@@ -124,7 +208,7 @@ const sets={
 ],
 7:[
  {kind:"rewrite",label:"(1)",
-  original:"Many students don’t go to school on Sunday.",
+  original:"Many students don’t go to school <span class=\"sourceUnderline\">on Sunday</span>.",
   instruction:"下線部を「次の日曜日」にかえて、未来の否定文に",
   afterParts:["Many students "," go to school "," Sunday."],
   answers:["won’t","next"],
@@ -138,35 +222,284 @@ const sets={
   display:"Will you play baseball tomorrow?",
   rule:"未来の疑問文は Will＋主語＋動詞の原形 ～? の形です。play は原形のまま使います。"},
  {kind:"rewrite",label:"(3)",
-  original:"I went to the library last week.",
+  original:"I went to the library <span class=\"sourceUnderline\">last week</span>.",
   instruction:"下線部を「明日」にかえて、未来の文に",
   afterParts:["I "," "," to go to the library tomorrow."],
   answers:["am","going"],
   display:"I am going to go to the library tomorrow.",
   rule:"be going to ～ で「～する予定です／つもりです」。主語が I なので be動詞は am です。"},
  {kind:"rewrite",label:"(4)",
-  original:"I’m watching TV now.",
+  original:"I’m watching TV <span class=\"sourceUnderline\">now</span>.",
   instruction:"下線部を「そのとき」にかえて、過去進行形の疑問文に",
   afterParts:[""," you "," TV at that time?"],
   answers:["Were","watching"],
   display:"Were you watching TV at that time?",
   rule:"過去進行形の疑問文は Was/Were＋主語＋動詞の-ing形 ～?。主語が you なので Were です。"},
  {kind:"rewrite",label:"(5)",
-  original:"He talks with his father every day.",
+  original:"He talks with his father <span class=\"sourceUnderline\">every day</span>.",
   instruction:"下線部を「昨日の9時」にかえて、過去進行形の文に",
   afterParts:["He "," "," with his father at 9:00 yesterday."],
   answers:["was","talking"],
   display:"He was talking with his father at 9:00 yesterday.",
   rule:"過去進行形は was/were＋動詞の-ing形。主語が He なので was talking です。"}
+],
+8:[
+ {kind:"reading8",type:"word",label:"(1)",
+  question:"対話文とポスターの内容に合うように、（①）に入る最も適当な英単語1語を書きなさい。",
+  answer:"October",
+  explanation:"ポスターに「10月の文化祭で上演する劇」とあるので、October が入ります。"},
+ {kind:"reading8",type:"choice",label:"(2)",
+  question:"対話文中の②に入る最も適当なものを、次のア〜エのうちから一つ選びなさい。",
+  choices:[["ア","How can I help you?"],["イ","When do they perform the drama?"],["ウ","What do the staff members do?"],["エ","Can you dance?"]],
+  answer:"ウ",
+  explanation:"直後に健太が「They write a script, create music, and make clothes.」とスタッフの仕事を説明しているため、②には「What do the staff members do?」が入ります。"},
+ {kind:"reading8",type:"reorder",label:"(3)",
+  question:"対話文中の下線部③が意味の通る英文になるように、（　）内の語を並べかえて書きなさい。（　）内以外の語は書かなくてよい。",
+  tokens:["room","at","the","music","to","come"],
+  answer:["come","to","the","music","room","at"],
+  display:"Then, please come to the music room at 4:00 p.m. this Friday.",
+  explanation:"come to ～ で「～へ来る」、the music room で「音楽室」、at 4:00 p.m. で時刻を表します。"},
+ {kind:"reading8",type:"multi",label:"(4)",
+  question:"対話文の内容に合うものを、次のア〜オのうちから二つ選び、その符号を書きなさい。",
+  choices:[
+    ["ア","メアリーは健太といっしょに簡単な日本語でポスターを作った。"],
+    ["イ","メアリーはひらがなとカタカナは読めるが、漢字は読めない。"],
+    ["ウ","健太とメアリーは生徒会でいっしょに活動している。"],
+    ["エ","メアリーは音楽が好きなので、文化祭の劇に演者として参加したいと思っている。"],
+    ["オ","健太はスタッフとして文化祭の劇に参加したいと思っている。"]
+  ],
+  answer:["イ","オ"],
+  explanation:"メアリーは「ひらがなとカタカナは読めるが漢字は読めない」と話しています。また健太は台本を書きたいと言っており、スタッフとして参加する内容です。"}
 ]};
 let section=1,idx=0,score=0,wrong=[],selected=null;
 const $=x=>document.getElementById(x);
 function say(t){if(!speechSynthesis){alert("このブラウザでは音声を利用できません");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.82;speechSynthesis.speak(u)}
-function start(n,list=null){section=n;idx=0;score=0;wrong=[];selected=null;sets._run=list||sets[n];$("menu").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");render()}
+function start(n,list=null){
+ section=n;idx=0;score=0;wrong=[];selected=null;sets._run=list||sets[n];
+ $("menu").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");
+ if(n===8 && !list){renderQ8All();}else{render();}
+}
+
+function renderQ8All(){
+ section=8; idx=0; score=0; wrong=[]; selected=null; sets._run=sets[8];
+ $("title").textContent="大問8 長文会話・ポスター";
+ $("count").textContent="4問まとめて解答";
+ $("bar").style.width="0%";
+ $("audio").innerHTML="";
+ $("feedback").className="feedback hide";
+ $("choices").innerHTML="";
+ $("check").classList.add("hide");
+ $("next").classList.add("hide");
+
+ const q1=sets[8][0], q2=sets[8][1], q3=sets[8][2], q4=sets[8][3];
+
+ $("prompt").innerHTML=`
+   <div class="small muted">掲示板のポスターと対話文を読み、(1)〜(4)をすべて解答してからまとめて答え合わせをします。途中では正解・解説は表示しません。</div>
+   ${q8PassageHtml()}
+   <div class="q8AllQuestions">
+     <div class="q8OneQuestion">
+       <h3>${q1.label}</h3>
+       <div class="sentence">${q1.question}</div>
+       <input id="q8allWord" class="q8AnswerInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="英単語1語を入力">
+     </div>
+
+     <div class="q8OneQuestion">
+       <h3>${q2.label}</h3>
+       <div class="sentence">${q2.question}</div>
+       <div class="q8Multi" id="q8allChoice">
+         ${q2.choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}
+       </div>
+     </div>
+
+     <div class="q8OneQuestion">
+       <h3>${q3.label}</h3>
+       <div class="sentence">${q3.question}</div>
+       <div class="small muted">回答</div>
+       <div id="q8allReorderAnswer" class="q8ReorderAnswer"></div>
+       <div class="small muted">（　）内の語</div>
+       <div id="q8allReorderBank" class="q8ReorderBank"></div>
+       <button type="button" class="btn sub" id="q8allUndo">1つ戻す</button>
+     </div>
+
+     <div class="q8OneQuestion">
+       <h3>${q4.label}</h3>
+       <div class="sentence">${q4.question}</div>
+       <div class="small muted" style="margin-bottom:8px">2つ選んでください。</div>
+       <div class="q8Multi" id="q8allMulti">
+         ${q4.choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}
+       </div>
+     </div>
+
+     <button type="button" class="btn q8AllCheck" id="q8AllCheck" disabled>4問まとめて答え合わせ</button>
+   </div>`;
+
+ window.q8AllChoice="";
+ window.q8AllMulti=[];
+ window.q8AllReorder=[];
+ const allCheck=$("q8AllCheck");
+
+ function validateAll(){
+   allCheck.disabled = !(
+     $("q8allWord").value.trim() &&
+     window.q8AllChoice &&
+     window.q8AllReorder.length===q3.answer.length &&
+     window.q8AllMulti.length===2
+   );
+ }
+
+ $("q8allWord").addEventListener("input",validateAll);
+
+ document.querySelectorAll("#q8allChoice .q8Choice").forEach(b=>b.onclick=()=>{
+   document.querySelectorAll("#q8allChoice .q8Choice").forEach(x=>x.classList.remove("selected"));
+   b.classList.add("selected");
+   window.q8AllChoice=b.dataset.k;
+   validateAll();
+ });
+
+ document.querySelectorAll("#q8allMulti .q8Choice").forEach(b=>b.onclick=()=>{
+   const k=b.dataset.k;
+   let arr=window.q8AllMulti;
+   if(arr.includes(k)){
+     window.q8AllMulti=arr.filter(x=>x!==k);
+     b.classList.remove("selected");
+   }else if(arr.length<2){
+     arr.push(k);
+     b.classList.add("selected");
+   }
+   validateAll();
+ });
+
+ function drawAllReorder(){
+   const placed=window.q8AllReorder;
+   $("q8allReorderAnswer").innerHTML=placed.map((w,i)=>`<button type="button" class="q8Chip" data-pos="${i}">${w}</button>`).join("");
+   $("q8allReorderBank").innerHTML=q3.tokens.map((w,i)=>{
+     const used=placed.filter(x=>x===w).length>q3.tokens.slice(0,i).filter(x=>x===w).length;
+     return `<button type="button" class="q8Chip ${used?"used":""}" data-word="${w}" ${used?"disabled":""}>${w}</button>`;
+   }).join("");
+   document.querySelectorAll("#q8allReorderBank .q8Chip:not([disabled])").forEach(b=>b.onclick=()=>{
+     window.q8AllReorder.push(b.dataset.word); drawAllReorder(); validateAll();
+   });
+   document.querySelectorAll("#q8allReorderAnswer .q8Chip").forEach(b=>b.onclick=()=>{
+     window.q8AllReorder.splice(Number(b.dataset.pos),1); drawAllReorder(); validateAll();
+   });
+ }
+ $("q8allUndo").onclick=()=>{window.q8AllReorder.pop();drawAllReorder();validateAll()};
+ drawAllReorder();
+
+ allCheck.onclick=gradeQ8All;
+}
+
+function gradeQ8All(){
+ const qs=sets[8];
+ const norm=s=>s.trim().normalize("NFKC").toLowerCase();
+ const ok1=norm($("q8allWord").value)===norm(qs[0].answer);
+ const ok2=window.q8AllChoice===qs[1].answer;
+ const ok3=window.q8AllReorder.length===qs[2].answer.length &&
+           window.q8AllReorder.every((v,i)=>v===qs[2].answer[i]);
+ const a=[...window.q8AllMulti].sort(), b=[...qs[3].answer].sort();
+ const ok4=a.length===b.length && a.every((v,i)=>v===b[i]);
+ const oks=[ok1,ok2,ok3,ok4];
+ score=oks.filter(Boolean).length;
+ wrong=qs.filter((_,i)=>!oks[i]);
+
+ document.querySelectorAll("#prompt button,#prompt input").forEach(x=>x.disabled=true);
+ $("bar").style.width="100%";
+
+ const q2ans=qs[1].choices.find(x=>x[0]===qs[1].answer);
+ $("feedback").className="feedback";
+ $("feedback").innerHTML=`
+   <b>大問8　${score} / 4問 正解</b>
+   <div class="q8ResultItem">
+     <b>(1) ${ok1?"○":"×"}</b><br>
+     正解：<b>${qs[0].answer}</b><br>
+     ${qs[0].explanation}
+   </div>
+   <div class="q8ResultItem">
+     <b>(2) ${ok2?"○":"×"}</b><br>
+     正解：<b>${qs[1].answer}　${q2ans[1]}</b><br>
+     ${qs[1].explanation}
+   </div>
+   <div class="q8ResultItem">
+     <b>(3) ${ok3?"○":"×"}</b><br>
+     正解：<b>${qs[2].answer.join(" ")}</b><br>
+     <span class="english">${qs[2].display}</span><br>
+     ${qs[2].explanation}
+   </div>
+   <div class="q8ResultItem">
+     <b>(4) ${ok4?"○":"×"}</b><br>
+     正解：<b>${qs[3].answer.join("・")}</b><br>
+     ${qs[3].explanation}
+   </div>
+   <div class="q8ResultItem">
+     <b>対話文を英文・日本語訳で確認</b>
+     <div class="small muted" style="margin-top:5px">英文のすぐ下に日本語訳を表示します。▶でその部分だけ聞けます。</div>
+     <div class="q8Bilingual">
+       <div class="q8Line"><div class="q8English">Mary：Hi, Kenta. This poster says, “Let’s make something.” Is that right?</div><div class="q8Japanese">メアリー：こんにちは、健太。このポスターには「何かを作ろう」と書いてあるの？</div><button type="button" class="btn sub q8LinePlay" data-say="Hi, Kenta. This poster says, Let's make something. Is that right?">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：Yes. You can read Japanese.</div><div class="q8Japanese">健太：そうだよ。日本語が読めるんだね。</div><button type="button" class="btn sub q8LinePlay" data-say="Yes. You can read Japanese.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：I can read hiragana and katakana, but I cannot read kanji. Can you tell me about the poster?</div><div class="q8Japanese">メアリー：ひらがなとカタカナは読めるけど、漢字は読めないの。このポスターについて教えてくれる？</div><button type="button" class="btn sub q8LinePlay" data-say="I can read hiragana and katakana, but I cannot read kanji. Can you tell me about the poster?">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：OK. I made this poster. I’m in the student council. We want to make a drama and perform it at the school festival in October.</div><div class="q8Japanese">健太：いいよ。このポスターは僕が作ったんだ。僕は生徒会に入っているんだ。僕たちは劇を作って、10月の文化祭で上演したいんだ。</div><button type="button" class="btn sub q8LinePlay" data-say="OK. I made this poster. I'm in the student council. We want to make a drama and perform it at the school festival in October.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：That’s interesting.</div><div class="q8Japanese">メアリー：おもしろそうね。</div><button type="button" class="btn sub q8LinePlay" data-say="That's interesting.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：We need ten performers and ten staff members.</div><div class="q8Japanese">健太：演者10人とスタッフ10人が必要なんだ。</div><button type="button" class="btn sub q8LinePlay" data-say="We need ten performers and ten staff members.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：Ten performers perform the drama, right? What do the staff members do?</div><div class="q8Japanese">メアリー：10人の演者が劇を演じるのよね？ スタッフは何をするの？</div><button type="button" class="btn sub q8LinePlay" data-say="Ten performers perform the drama, right? What do the staff members do?">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：They write a script, create music, and make clothes.</div><div class="q8Japanese">健太：台本を書いたり、音楽を作ったり、衣装を作ったりするよ。</div><button type="button" class="btn sub q8LinePlay" data-say="They write a script, create music, and make clothes.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：Oh, I want to join the staff. I like to create music with a computer.</div><div class="q8Japanese">メアリー：あら、私はスタッフに参加したいわ。コンピューターで音楽を作るのが好きなの。</div><button type="button" class="btn sub q8LinePlay" data-say="Oh, I want to join the staff. I like to create music with a computer.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：Really? Can you do that?</div><div class="q8Japanese">健太：本当？ それができるの？</div><button type="button" class="btn sub q8LinePlay" data-say="Really? Can you do that?">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：Yes, I can. My father taught me. How about you, Kenta? Do you want to do something?</div><div class="q8Japanese">メアリー：ええ、できるわ。父が教えてくれたの。健太はどう？ 何かやりたいことはある？</div><button type="button" class="btn sub q8LinePlay" data-say="Yes, I can. My father taught me. How about you, Kenta? Do you want to do something?">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Kenta：Yes, I want to write a script. Then, please come to the music room at 4:00 p.m. this Friday. Let’s make a wonderful drama together.</div><div class="q8Japanese">健太：うん、僕は台本を書きたいな。それじゃあ、今週の金曜日の午後4時に音楽室に来て。一緒にすばらしい劇を作ろう。</div><button type="button" class="btn sub q8LinePlay" data-say="Yes, I want to write a script. Then, please come to the music room at four p.m. this Friday. Let's make a wonderful drama together.">▶ この英文を聞く</button></div>
+       <div class="q8Line"><div class="q8English">Mary：OK. Thank you.</div><div class="q8Japanese">メアリー：わかった。ありがとう。</div><button type="button" class="btn sub q8LinePlay" data-say="OK. Thank you.">▶ この英文を聞く</button></div>
+     </div>
+   </div>
+   <button type="button" class="btn sub" id="q8AllListen">▶ 対話文を聞く</button>
+ `;
+ document.querySelectorAll(".q8LinePlay").forEach(b=>b.onclick=()=>say(b.dataset.say));
+ $("q8AllListen").onclick=()=>say(`Hi, Kenta. This poster says, Let's make something. Is that right? Yes. You can read Japanese. I can read hiragana and katakana, but I cannot read kanji. Can you tell me about the poster? OK. I made this poster. I'm in the student council. We want to make a drama and perform it at the school festival in October. That's interesting. We need ten performers and ten staff members. Ten performers perform the drama, right? What do the staff members do? They write a script, create music, and make clothes. Oh, I want to join the staff. I like to create music with a computer. Really? Can you do that? Yes, I can. My father taught me. How about you, Kenta? Do you want to do something? Yes, I want to write a script. Then, please come to the music room at four p.m. this Friday. Let's make a wonderful drama together. OK. Thank you.`);
+ $("feedback").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function renderQ8Intro(){
+ $("title").textContent="大問8 長文会話・ポスター";
+ $("count").textContent="本文を読む";
+ $("bar").style.width="0%";
+ $("feedback").className="feedback hide";
+ $("check").classList.add("hide");
+ $("next").classList.add("hide");
+ $("audio").innerHTML="";
+ $("choices").innerHTML="";
+ $("prompt").innerHTML=`<div class="q8Intro"><div class="small muted">まず掲示板のポスターを確認し、そのあと健太とメアリーの対話文を読んでください。問題では必要なときにもう一度確認できます。</div>${q8PassageHtml()}<button type="button" class="btn" id="q8StartQuestions">問題へ進む →</button></div>`;
+ $("q8StartQuestions").onclick=()=>render();
+}
+const q8PassageHtml=()=>`
+<div class="q8PassageBox">
+<div class="small muted" style="margin-bottom:8px">健太とメアリーは、次の掲示板のポスターを見ながら話しています。</div>
+
+<div class="q8PosterHtml" role="group" aria-label="文化祭の劇の募集ポスター">
+  <div class="q8PosterTitle">いっしょに劇をつくろう!!</div>
+  <div class="q8PosterItem">● 10月の文化祭で上演する劇の<br>　演者とスタッフを10名ずつ<br>　募集します。</div>
+  <div class="q8PosterItem">● 希望者は今週金曜日の午後4時<br>　に音楽室に来てください。</div>
+  <div class="q8PosterAuthor">生徒会</div>
+</div>
+
+<div style="margin-top:22px"><b>対話文</b></div><br>
+Mary：Hi, Kenta. This poster says, “Let’s make something.” Is that right?<br>
+Kenta：Yes. You can read Japanese.<br>
+Mary：I can read <i>hiragana</i> and <i>katakana</i>, but I cannot read <i>kanji</i>. Can you tell me about the poster?<br>
+Kenta：OK. I made this poster. I’m in the student council. We want to make a drama and perform it at the school festival in ( ① ).<br>
+Mary：That’s interesting.<br>
+Kenta：We need ten performers and ten staff members.<br>
+Mary：Ten performers perform the drama, right?　<span style="border:1px solid #777;padding:1px 6px">②</span><br>
+Kenta：They write a script, create music, and make clothes.<br>
+Mary：Oh, I want to join the staff. I like to create music with a computer.<br>
+Kenta：Really? Can you do that?<br>
+Mary：Yes, I can. My father taught me. How about you, Kenta? Do you want to do something?<br>
+Kenta：Yes, I want to write a script. ③Then, please ( room / at / the / music / to / come ) 4:00 p.m. this Friday. Let’s make a wonderful drama together.<br>
+Mary：OK. Thank you.<br><br>
+<span class="small muted">※ student council＝生徒会　perform＝〜を演じる　performer＝演者　staff＝スタッフ　script＝台本　create＝〜を創作する</span>
+</div>`; 
+
 function render(){
  const q=sets._run[idx];
  selected=null;
- const sectionName=(section===1||section===2)?"リスニング":(section===3||section===4)?"英単語完成":section===5?"文法・語形":section===6?"日記文・語句選択":"英文の書きかえ";
+ const sectionName=(section===1||section===2)?"リスニング":(section===3||section===4)?"英単語完成":section===5?"文法・語形":section===6?"日記文・語句選択":section===7?"英文の書きかえ":"長文会話・ポスター";
  $("title").textContent=`大問${section} ${sectionName}`;
  $("count").textContent=`${idx+1} / ${sets._run.length}問`;
  $("bar").style.width=`${idx/sets._run.length*100}%`;
@@ -197,9 +530,83 @@ function render(){
    setTimeout(()=>inp.focus(),50);
    return;
  }
+ if(section===8){
+   $("audio").innerHTML="";
+   let answerHtml="";
+   if(q.type==="word"){
+     answerHtml=`<input id="q8word" class="q8AnswerInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="英単語1語を入力">`;
+   }else if(q.type==="choice"){
+     answerHtml=`<div class="q8Multi" id="q8choice">${q.choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div>`;
+   }else if(q.type==="multi"){
+     answerHtml=`<div class="small muted" style="margin-bottom:8px">2つ選んでください。</div><div class="q8Multi" id="q8multi">${q.choices.map(([k,t])=>`<button type="button" class="q8Choice" data-k="${k}"><b>${k}</b>　${t}</button>`).join("")}</div>`;
+   }else{
+     answerHtml=`<div class="small muted">回答</div><div id="q8reorderAnswer" class="q8ReorderAnswer"></div><div class="small muted">（　）内の語</div><div id="q8reorderBank" class="q8ReorderBank"></div><button type="button" class="btn sub" id="q8undo">1つ戻す</button>`;
+   }
+
+   $("prompt").innerHTML=`
+     <div class="q8QuestionBox" id="q8QuestionArea">
+       <button type="button" class="btn sub q8Toggle" id="q8TogglePassage">ポスター・対話文を確認する</button>
+       <div class="sentence"><b>${q.label}</b>　${q.question}</div>
+       <div id="q8AnswerArea">${answerHtml}</div>
+     </div>
+     <div id="q8PassagePanel" class="q8PassagePanel hide">
+       <div class="q8BackRow"><button type="button" class="btn sub" id="q8BackTop">問題へ戻る ↑</button></div>
+       ${q8PassageHtml()}
+       <div class="q8BackRow"><button type="button" class="btn sub" id="q8BackBottom">問題へ戻る ↑</button></div>
+     </div>`;
+   $("choices").innerHTML="";
+   $("check").disabled=true;
+
+   const showPassage=()=>{
+     $("q8PassagePanel").classList.remove("hide");
+     $("q8PassagePanel").scrollIntoView({behavior:"smooth",block:"start"});
+   };
+   const backToQuestion=()=>{
+     $("q8QuestionArea").scrollIntoView({behavior:"smooth",block:"start"});
+   };
+   $("q8TogglePassage").onclick=showPassage;
+   $("q8BackTop").onclick=backToQuestion;
+   $("q8BackBottom").onclick=backToQuestion;
+
+   if(q.type==="word"){
+     const inp=$("q8word");
+     inp.addEventListener("input",()=>{$("check").disabled=!inp.value.trim()});
+     inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("check").disabled)$("check").click()});
+   }else if(q.type==="choice"){
+     window.q8Selected="";
+     document.querySelectorAll("#q8choice .q8Choice").forEach(b=>b.onclick=()=>{
+       document.querySelectorAll("#q8choice .q8Choice").forEach(x=>x.classList.remove("selected"));
+       b.classList.add("selected"); window.q8Selected=b.dataset.k; $("check").disabled=false;
+     });
+   }else if(q.type==="multi"){
+     window.q8SelectedMulti=[];
+     document.querySelectorAll("#q8multi .q8Choice").forEach(b=>b.onclick=()=>{
+       const k=b.dataset.k, arr=window.q8SelectedMulti;
+       if(arr.includes(k)){window.q8SelectedMulti=arr.filter(x=>x!==k);b.classList.remove("selected");}
+       else if(arr.length<2){arr.push(k);b.classList.add("selected");}
+       $("check").disabled=window.q8SelectedMulti.length!==2;
+     });
+   }else{
+     const placed=[];
+     function drawQ8(){
+       $("q8reorderAnswer").innerHTML=placed.map((w,i)=>`<button type="button" class="q8Chip" data-pos="${i}">${w}</button>`).join("");
+       $("q8reorderBank").innerHTML=q.tokens.map((w,i)=>{
+         const used=placed.filter(x=>x===w).length>q.tokens.slice(0,i).filter(x=>x===w).length;
+         return `<button type="button" class="q8Chip ${used?"used":""}" data-word="${w}" ${used?"disabled":""}>${w}</button>`;
+       }).join("");
+       document.querySelectorAll("#q8reorderBank .q8Chip:not([disabled])").forEach(b=>b.onclick=()=>{placed.push(b.dataset.word);drawQ8()});
+       document.querySelectorAll("#q8reorderAnswer .q8Chip").forEach(b=>b.onclick=()=>{placed.splice(Number(b.dataset.pos),1);drawQ8()});
+       $("check").disabled=placed.length!==q.answer.length;
+     }
+     $("q8undo").onclick=()=>{placed.pop();drawQ8()};
+     window.q8Reorder=placed;
+     drawQ8();
+   }
+   return;
+ }
  if(section===7){
    $("audio").innerHTML="";
-   $("prompt").innerHTML=`<div class="small muted">次の英文を、（　）内の指示に従って下の文のように書きかえます。下線部にあてはまる英単語を1語ずつ入力しましょう。</div>
+   $("prompt").innerHTML=`<div class="small muted">次の英文を、（　）内の指示に従って書きかえましょう。下の文の空欄に入る英単語を1語ずつ入力してください。</div>
      <div class="rewriteOriginal"><b>${q.label}</b>　${q.original}</div>
      <div class="rewriteInstruction">（${q.instruction}）</div>
      <div class="rewriteSentence">${q.afterParts[0]}<input id="rw0" class="rewriteInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"> ${q.afterParts[1]}<input id="rw1" class="rewriteInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"> ${q.afterParts[2]}</div>`;
@@ -326,6 +733,45 @@ $("check").onclick=()=>{
        <button type="button" class="btn sub" id="playWord">▶ 単語を聞く</button>
      </div>`;
    $("playWord").onclick=()=>say(q.word);
+   $("check").classList.add("hide");
+   $("next").classList.remove("hide");
+   $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
+   $("bar").style.width=`${(idx+1)/sets._run.length*100}%`;
+   return;
+ }
+ if(section===8){
+   let ok=false, detail="";
+   if(q.type==="word"){
+     const raw=$("q8word").value.trim().normalize("NFKC").toLowerCase();
+     ok=raw===q.answer.toLowerCase();
+     detail=`正解：<b>${q.answer}</b>`;
+   }else if(q.type==="choice"){
+     ok=window.q8Selected===q.answer;
+     const choice=q.choices.find(x=>x[0]===q.answer);
+     detail=`正解：<b>${q.answer}　${choice[1]}</b>`;
+   }else if(q.type==="multi"){
+     const a=[...window.q8SelectedMulti].sort(), b=[...q.answer].sort();
+     ok=a.length===b.length && a.every((v,i)=>v===b[i]);
+     detail=`正解：<b>${q.answer.join("・")}</b>`;
+   }else{
+     const vals=window.q8Reorder||[];
+     ok=vals.length===q.answer.length && vals.every((v,i)=>v===q.answer[i]);
+     detail=`正解：<b>${q.answer.join(" ")}</b><br><div class="english">${q.display}</div>`;
+   }
+   if(ok)score++;else wrong.push(q);
+   document.querySelectorAll(".q8Choice,.q8Chip,.q8AnswerInput").forEach(x=>x.disabled=true);
+   const undo=$("q8undo"); if(undo)undo.disabled=true;
+   $("feedback").className=`feedback ${ok?"ok":"ng"}`;
+   $("feedback").innerHTML=`<b>${ok?"○ 正解！":"× 不正解"}</b>
+     <div class="transcript">${detail}<br><br><b>解説</b><br>${q.explanation}
+     <br><br><button type="button" class="btn sub" id="q8ShowFull">ポスター・対話文を確認する</button>
+     <div id="q8Review" class="hide">${q8PassageHtml()}<button type="button" class="btn sub" id="q8Listen">▶ 対話文を聞く</button></div>
+     </div>`;
+   $("q8ShowFull").onclick=()=>{
+     $("q8Review").classList.remove("hide");
+     $("q8ShowFull").classList.add("hide");
+     $("q8Listen").onclick=()=>say(`Hi, Kenta. This poster says, Let's make something. Is that right? Yes. You can read Japanese. I can read hiragana and katakana, but I cannot read kanji. Can you tell me about the poster? OK. I made this poster. I'm in the student council. We want to make a drama and perform it at the school festival in October. That's interesting. We need ten performers and ten staff members. Ten performers perform the drama, right? What do the staff members do? They write a script, create music, and make clothes. Oh, I want to join the staff. I like to create music with a computer. Really? Can you do that? Yes, I can. My father taught me. How about you, Kenta? Do you want to do something? Yes, I want to write a script. Then, please come to the music room at four p.m. this Friday. Let's make a wonderful drama together. OK. Thank you.`);
+   };
    $("check").classList.add("hide");
    $("next").classList.remove("hide");
    $("next").textContent=idx===sets._run.length-1?"結果を見る":"次の問題 →";
@@ -476,7 +922,7 @@ $("next").onclick=()=>{idx++;if(idx<sets._run.length)render();else finish()}
 function finish(){
  $("quiz").classList.add("hide");
  $("result").classList.remove("hide");
- const nextSection=section<7?section+1:null;
+ const nextSection=section<8?section+1:null;
  $("result").innerHTML=`<h2>大問${section} 結果</h2>
    <div class="score">${score} / ${sets._run.length}問 正解</div>
    ${wrong.length?`<button class="btn" id="retryWrong">間違えた問題だけやる</button>`:`<p class="ok" style="text-align:center;font-weight:800">全問正解！</p>`}
